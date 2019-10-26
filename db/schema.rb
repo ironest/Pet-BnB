@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_26_132747) do
+ActiveRecord::Schema.define(version: 2019_10_26_132750) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,15 +18,22 @@ ActiveRecord::Schema.define(version: 2019_10_26_132747) do
   create_table "bookings", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "petsitter_id"
-    t.bigint "pet_id"
     t.date "from_date"
     t.date "to_date"
     t.integer "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["pet_id"], name: "index_bookings_on_pet_id"
     t.index ["petsitter_id"], name: "index_bookings_on_petsitter_id"
     t.index ["user_id"], name: "index_bookings_on_user_id"
+  end
+
+  create_table "bookings_pets", force: :cascade do |t|
+    t.bigint "booking_id"
+    t.bigint "pet_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["booking_id"], name: "index_bookings_pets_on_booking_id"
+    t.index ["pet_id"], name: "index_bookings_pets_on_pet_id"
   end
 
   create_table "pets", force: :cascade do |t|
@@ -43,6 +50,7 @@ ActiveRecord::Schema.define(version: 2019_10_26_132747) do
     t.integer "price_rate"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "status"
     t.index ["user_id"], name: "index_petsitters_on_user_id"
   end
 
@@ -85,9 +93,10 @@ ActiveRecord::Schema.define(version: 2019_10_26_132747) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "bookings", "pets"
   add_foreign_key "bookings", "petsitters"
   add_foreign_key "bookings", "users"
+  add_foreign_key "bookings_pets", "bookings"
+  add_foreign_key "bookings_pets", "pets"
   add_foreign_key "pets", "users"
   add_foreign_key "petsitters", "users"
   add_foreign_key "petsitters_services", "petsitters"
