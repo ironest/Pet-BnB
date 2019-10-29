@@ -1,15 +1,42 @@
 <h1>Pet BnB</h1>
 
-<h2>Home</h2>
+<main id="page-home" class="container">
 
+    <h2 class="page-name">Home</h2>
 
-<%= link_to "Your Pets", pets_path %>
+    <div class="component">
+        <%= link_to(pets_path) do %>
+            <h2>Your Pets</h2>
+            <p>We would love to know about your furry pets</p>
+        <% end %>
+    </div>
 
-<%= link_to "Look for Sitters", sitters_path %>
+    <div class="component">
+        <%= link_to(petsitters_path) do %>
+            <h2>Look for Sitters</h2>
+            <p>Browse our Sitters and their services</p>
+        <% end %>
+    </div>
 
-<%= link_to "Become a Sitter", new_sitter_path %>
+    <div class="component">
+        <%= link_to(new_petsitter_path) do %>
+            <h2>Become a Sitter</h2>
+            <p>Join our community of Sitters</p>
+        <% end %>
+    </div>
 
-<%= link_to "Your Details", edit_user_password_path %>
+    <div class="component">
+        <%= link_to(bookings_path) do %>
+            <h2>Bookings</h2>
+            <p>Check the status of your activities</p>
+        <% end %>
+    </div>
 
-<%= link_to "Reservation", new_user_session_path %>
+    <div class="component"> 
+        <%= link_to(edit_user_password_path) do %>
+            <h2>Your Details</h2>
+            <p>Review or update your details</p>
+        <% end %>
+    </div>
 
+</main>

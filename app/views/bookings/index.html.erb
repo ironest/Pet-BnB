@@ -1,0 +1,19 @@
+<h1>Pet BnB</h1>
+
+<main id="pet-index" class="container">
+
+    <h2 class="page-name">Your Bookings</h2>
+
+    <% @bookings.each_with_index do |booking, index| %>
+
+        <div class="component">
+            <%= link_to(booking) do %>
+                <h3><%= booking.status %></h3>
+                <p>Requested by: <%= booking.user.first_name %> To: <%= booking.petsitter.user.first_name %></p>
+                <p>Period: <%= booking.from_date %> - <%= booking.from_date %></p>
+            <% end %>
+        </div>
+        
+    <% end %>
+
+</main>

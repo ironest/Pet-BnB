@@ -1,0 +1,17 @@
+<h1>Pet BnB</h1>
+
+<main id="petsitters-index" class="container">
+
+    <h2 class="page-name">Petsitters</h2>
+
+    <% @petsitters.each_with_index do |petsitter, index| %>
+
+        <div class="component">
+            <%= link_to(petsitter) do %>
+                <%= image_tag petsitter.user.picture if petsitter.user.picture.attached? %>
+                <h3><%= petsitter.user.first_name + " " + petsitter.user.last_name %></h3>
+            <% end %>
+        </div>
+    <% end %>
+
+</main>
