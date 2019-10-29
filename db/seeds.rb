@@ -96,12 +96,15 @@ end
 for booking in Booking.all.sample(3)
 
     booking.status = 3 # payed
+    booking.save
  
-    t = Transaction.create(
+    amount = (booking.petsitter.price_rate * (booking.to_date - booking.from_date).to_i)
+
+    p = Payment.create(
         booking_id: booking.id,
-        amount: (booking.petsitter.price_rate * (booking.to_date - booking.from_date).to_i)
+        amount: amount
     )
 
-    puts "Transaction - #{t.errors.messages}"
+    puts "Payment inserted: $#{amount}"
 
 end
