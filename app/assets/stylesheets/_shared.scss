@@ -9,6 +9,35 @@
     padding: 0;
 }
 
+.floating-bubble {
+    display: block;
+    padding: 20px;
+    font-size: 20px;
+    line-height: 20px;
+    text-align: center;
+    width: auto;
+    position: absolute;
+    top: 51px;
+    left: 20px;
+    color: #fff;
+}
+
+.hideMe {
+    -webkit-animation: hideAnimation 2s forwards; 
+    animation: hideAnimation 2s forwards;
+}
+
+@keyframes hideAnimation {
+    0%   {opacity: 1;}
+    90%  {opacity: 1;}
+    100% {opacity: 0;}
+}
+@-webkit-keyframes hideAnimation {
+    0%   {opacity: 1;}
+    90%  {opacity: 1;}
+    100% {opacity: 0;}
+}
+
 header {
 
     .nav-bar {
@@ -63,24 +92,29 @@ header {
             }
 
             .nav-bar__menu {
-                position: absolute;
+                position: fixed;
                 right: 0;
-                top: 51px;
+                top: 0;
+                bottom: 0;
                 
                 flex-flow: column nowrap;
                 justify-content: flex-start;
                 width: 230px;
-                height: calc(100% - 51px);
         
-                -webkit-box-shadow: -10px 20px 15px 0px rgba(0,0,0,0.4);
-                -moz-box-shadow: -10px 20px 15px 0px rgba(0,0,0,0.4);
-                box-shadow: -10px 20px 15px 0px rgba(0,0,0,0.4);
+                -webkit-box-shadow: -10px 0px 15px 0px rgba(0,0,0,0.4);
+                -moz-box-shadow: -10px 0px 15px 0px rgba(0,0,0,0.4);
+                box-shadow: -10px 0px 15px 0px rgba(0,0,0,0.4);
         
                 display: none;
-        
+
+                label {
+                    align-self: flex-end;
+                }
+
                 & li:first-child {
                     margin-top: 50px;
                 }
+
             }
 
             #toggle:checked + .nav-bar__menu {
@@ -133,13 +167,19 @@ header {
     background-size: cover;
 
     display: flex;
+    flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
 
-    h1 {
+    h1, h2 {
         color: #fff;
         font-size: 50px;
         text-shadow: 0px 0px 20px rgba(0, 0, 0, 1);
+        text-align: center;
+    }
+
+    h2 {
+        font-size: 30px;
     }
 
 }
