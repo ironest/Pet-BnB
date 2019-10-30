@@ -1,19 +1,22 @@
-<ul class="navbar">
-    <li><%= link_to "Home", root_path %></li>
-    <li><%= link_to "Your Pets", pets_path %></li>
-    <li><%= link_to "Look for Sitters", petsitters_path %></li>
-    <li><%= link_to "Become a Sitter", new_petsitter_path %></li>
-    <li><%= link_to "Bookings", bookings_path %></li>
-    <li><%= link_to "Your Details", edit_user_password_path %></li>
-    <li>
-        <% if user_signed_in? %>
-            <%= link_to "logout", destroy_user_session_path, method: :delete %>
-        <% else %>
-            <%= link_to "login", new_user_session_path %>
-        <% end %>
-    </li>
-</ul>
+<header>
+    <div class="nav-bar">
+        <label for="toggle">&#9776;</label>
+        <input type="checkbox" id="toggle">
 
-
-
-
+        <ul class="nav-bar__menu">
+            <li><%= link_to "Home", root_path, class: "nav-bar__menu__link" %></li>
+            <li><%= link_to "Your Pets", pets_path, class: "nav-bar__menu__link" %></li>
+            <li><%= link_to "Look for Sitters", petsitters_path, class: "nav-bar__menu__link" %></li>
+            <li><%= link_to "Become a Sitter", new_petsitter_path, class: "nav-bar__menu__link" %></li>
+            <li><%= link_to "Bookings", bookings_path, class: "nav-bar__menu__link" %></li>
+            <li><%= link_to "Your Details", edit_user_registration_path, class: "nav-bar__menu__link" %></li>
+            <li>
+                <% if user_signed_in? %>
+                    <%= link_to "logout", destroy_user_session_path, class: "nav-bar__menu__link", method: :delete %>
+                <% else %>
+                    <%= link_to "login", new_user_session_path, class: "nav-bar__menu__link"%>
+                <% end %>
+            </li>
+        </ul>
+    </div>
+</header>
