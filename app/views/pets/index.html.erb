@@ -4,16 +4,12 @@
 
     <% @pets.each_with_index do |pet, index| %>
 
-        <%= link_to(pet) do %>
-
-            <div class="component">
-                <%= image_tag pet.picture if pet.picture.attached? %>
+        <div class="component component-pet" style="background-image: url('<%= url_for(pet.picture) if pet.picture.attached? %>');">
+            <%= link_to(pet) do %>
                 <h3><%= pet.name %></h3>
                 <p><%= pet.pet_type.capitalize %></p>
-            </div>
-        
-        <% end %>
-
+            <% end %>
+        </div>
     <% end %>
 
 </main>
