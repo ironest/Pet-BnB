@@ -1,0 +1,33 @@
+#page-home {
+
+    &.container {
+
+        .component {
+
+            &__image {
+
+                &.your-pets {
+                    background-image: url("your-pets.jpg")
+                }
+
+                &.pet-sitters {
+                    background-image: url("pet-sitters.jpg")
+                }
+
+                &.become-sitter {
+                    background-image: url("become-sitter.jpg")
+                }
+
+                &.bookings {
+                    background-image: url("bookings.jpg")
+                }
+
+                &.your-details {
+                    background-image: url("your-details.jpg")
+                }
+
+            }
+
+        }
+    }
+}
