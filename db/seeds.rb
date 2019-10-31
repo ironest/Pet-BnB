@@ -11,7 +11,17 @@ Service.create(services)
 
 # Creating 20 random Users with made up information (through Faker)
 for i in 1..30
-    first_name = Faker::Name.first_name
+
+    gender = rand(0..1)
+
+    if gender == 1
+        first_name = Faker::Name.male_first_name 
+        img_key = "man"
+    else
+        first_name = Faker::Name.female_first_name
+        img_key = "woman"
+    end
+
     user = User.create(
         email: Faker::Internet.email(name: first_name),
         password: "test1234",
@@ -19,6 +29,16 @@ for i in 1..30
         last_name: Faker::Name.last_name,
         dob: Faker::Date.birthday(min_age: 18, max_age: 65)
     )
+
+    temp_picture = Down.download(
+        Faker::LoremFlickr.image(
+            size: "400x400",
+            search_terms: ['face', img_key],
+            match_all: true
+            ) + "?random=#{i}"
+        )
+
+    user.picture.attach(io: temp_picture, filename: File.basename(temp_picture.path))
 
     puts "Created USER #{first_name}"
 
@@ -97,7 +117,7 @@ for user_id in random_petowner_ids
     temp_picture = Down.download(
         Faker::LoremFlickr.image(
             size: "400x400",
-            search_terms: ['pet',img_key],
+            search_terms: ['animal','pet',img_key],
             match_all: true
             ) + "?random=#{i}"
         )
