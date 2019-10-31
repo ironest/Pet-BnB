@@ -4,37 +4,59 @@
 
     <div class="component">
         <%= link_to(pets_path) do %>
-            <h2>Your Pets</h2>
-            <p>We would love to know about your furry pets</p>
+            <div class="component__image your-pets">
+                <h3 class="tiny-shadow">Your Pets</h3>
+            </div>
+            <div class="component__info">
+                <p class="tiny-shadow">We would love to know about your furry pets</p>
+            </div>
         <% end %>
     </div>
 
     <div class="component">
         <%= link_to(petsitters_path) do %>
-            <h2>Look for Sitters</h2>
-            <p>Browse our Sitters and their services</p>
+            <div class="component__image pet-sitters">
+                <h3 class="tiny-shadow">Look for Sitters</h3>
+            </div>
+            <div class="component__info">
+                <p class="tiny-shadow">Browse our Sitters and their services</p>
+            </div>
         <% end %>
     </div>
 
     <div class="component">
         <%= link_to(new_petsitter_path) do %>
-            <h2>Become a Sitter</h2>
-            <p>Join our community of Sitters</p>
+            <div class="component__image become-sitter">
+                <h3 class="tiny-shadow">Become a Sitter</h3>
+            </div>
+            <div class="component__info">
+                <p class="tiny-shadow">Join our community of Sitters</p>
+            </div>
         <% end %>
     </div>
 
     <div class="component">
         <%= link_to(bookings_path) do %>
-            <h2>Bookings</h2>
-            <p>Check the status of your activities</p>
+            <div class="component__image bookings">
+                <h3 class="tiny-shadow">Bookings</h3>
+            </div>
+            <div class="component__info">
+                <p class="tiny-shadow">Check the status of your activities</p>
+            </div>
         <% end %>
     </div>
 
-    <div class="component"> 
+    <div class="component">
         <%= link_to(edit_user_registration_path) do %>
-            <h2>Your Details</h2>
-            <p>Review or update your details</p>
+            <div class="component__image your-details">
+                <h3 class="tiny-shadow">Your Details</h3>
+            </div>
+            <div class="component__info">
+                <p class="tiny-shadow">Review or update your details</p>
+            </div>
         <% end %>
     </div>
 
 </main>
+
+

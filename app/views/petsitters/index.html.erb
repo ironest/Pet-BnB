@@ -6,8 +6,11 @@
 
         <div class="component">
             <%= link_to(petsitter) do %>
-                <%= image_tag petsitter.user.picture if petsitter.user.picture.attached? %>
-                <h3><%= petsitter.user.first_name + " " + petsitter.user.last_name %></h3>
+                <div class="component__image" style="background-image: url('<%= url_for(petsitter.user.picture) if petsitter.user.picture.attached? %>');">
+                </div>
+                <div class="component__info">
+                    <p class="tiny-shadow"><%= petsitter.user.first_name + " " + petsitter.user.last_name %></p>
+                </div>
             <% end %>
         </div>
     <% end %>
