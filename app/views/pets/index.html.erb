@@ -9,11 +9,19 @@
                 <div class="component__image" style="background-image: url('<%= url_for(pet.picture) if pet.picture.attached? %>');">
                 </div>
                 <div class="component__info">
-                    <h3><%= pet.name %></h3>
-                    <p>(<%= pet.pet_type.capitalize %>)</p>
+                    <h3 class="tiny-shadow"><%= pet.name %></h3>
+                    <p class="tiny-shadow">(<%= pet.pet_type.capitalize %>)</p>
                 </div>
             <% end %>
         </div>
     <% end %>
+
+    <div class="component">
+        <%= link_to(new_pet_path) do %>
+            <div class="component__new-button">
+                <h3 class="tiny-shadow">Add a Pet</h3>
+            </div>
+        <% end %>
+    </div>
 
 </main>
