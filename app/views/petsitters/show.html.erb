@@ -1,0 +1,50 @@
+<main id="petsitter-show" class="container">
+
+    <h2 class="page-name">Petsitter details</h2>
+
+    <h3>
+        <%= @petsitter.user.first_name %>
+    </h3>
+
+    <br />
+
+    <p>
+        <%= @petsitter.user.last_name %>
+    </p>
+
+    <br />
+
+    <p>
+        <%= @petsitter.price_rate / 100.0 %>
+    </p>
+
+    <br />
+
+    <p>
+        <%= @petsitter.status %>
+    </p>
+
+    <br />
+
+    <%= image_tag @petsitter.user.picture if @petsitter.user.picture.attached? %>
+
+    <br />
+
+    <%= link_to("Edit petsitter profile", edit_petsitter_path(@petsitter.id)) %>
+
+    <br />
+
+    <%= link_to("Delete petsitter profile", petsitter_path(@petsitter.id), method: :delete, data: { confirm: 'Are you sure?' })%>
+
+    <br />
+
+    <p>
+        Residential Pets:
+        <% @petsitter.user.pets.each_with_index do |pet, index| %>
+
+            <%= image_tag pet.picture if pet.picture.attached? %>
+
+        <% end %>
+    </p>
+
+</main>

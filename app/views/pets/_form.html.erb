@@ -1,0 +1,47 @@
+<% if pet.errors.any? %>
+
+    <% for error in pet.errors.full_messages %>
+        <p><%=error%></p>
+    <% end %>
+
+<% end %>
+
+<%= form_with model: pet, local: true, class: "form" do |form| %>
+
+    <div class="picture-container">
+
+        <% if @pet.picture.attached? %>
+            <%= image_tag @pet.picture, id:"picture-preview" %>
+        <% else %>
+            <%= image_tag "", id:"picture-preview", style:"display: none" %>
+        <% end %>
+
+    </div>
+
+    <%= form.label :Upload_Picture %>
+    <%= form.file_field :picture, accept: "image/png,image/gif,image/jpeg,image/jpg", onchange: "readURL(this.value)"  %>
+
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+
+    <%= form.label :pet_type %>
+    <%= form.select(:pet_type, options_for_select(pet_types, pet_types[pet.pet_type]))%>
+
+    <%= form.submit %>
+
+<% end %>
+
+<script>
+    var readURL = function(event) {
+
+        var input = document.getElementById("pet_picture");
+        var fReader = new FileReader();
+        fReader.readAsDataURL(input.files[0]);
+        fReader.onloadend = function(event){
+            var img = document.getElementById("picture-preview");
+            img.src = event.target.result;
+            img.style.display = "block";
+        }
+
+  };
+</script>

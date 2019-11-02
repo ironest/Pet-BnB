@@ -144,6 +144,11 @@ header {
     justify-content: center;
     align-items: stretch;
 
+    .page-name {
+        color: $base_green;
+        margin-bottom: 20px;
+    }
+
     .component {
 
         width: 260px;
@@ -185,6 +190,30 @@ header {
             flex-flow: column;
             justify-content: center;
             align-items: center;
+        }
+
+        &__new-button {
+
+            background-color: $white_green;
+            border-radius: 20px;
+            display: flex;
+            flex-flow: column;
+            justify-content: center;
+            align-items: center;
+            height: 216px;
+            border: 2px solid $base_green;
+
+            h3 {
+                color: $base_green;
+            }
+
+            &:hover {
+                background-color: $base_green;
+                h3 {
+                    color: $white_green;
+                }
+            }
+
         }
 
         &:hover {
