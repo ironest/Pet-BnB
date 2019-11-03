@@ -1,0 +1,30 @@
+<% if petsitter.errors.any? %>
+
+    <% for error in petsitter.errors.full_messages %>
+        <p><%=error%></p>
+    <% end %>
+
+<% end %>
+
+<%= form_with model: petsitter, local: true, class: "form" do |form| %>
+
+    <div class="picture-container">
+
+        <% if @petsitter.user.picture.attached? %>
+            <%= image_tag @petsitter.user.picture, id:"picture-preview" %>
+        <% else %>
+            <%= image_tag "", id:"picture-preview", style:"display: none" %>
+        <% end %>
+
+    </div>
+
+    <p>Profile Picture can be modified from <%= link_to "Your Detailes", edit_user_registration_path, class: "standard-link" %></p>
+
+    
+
+    <%= form.label :price_rate, "Price in cents" %>
+    <%= form.number_field :price_rate, min: 0 %>
+
+    <%= form.submit %>
+
+<% end %>

@@ -1,7 +1,7 @@
 class PetsittersController < ApplicationController
 
     before_action :authenticate_user!
-    before_action :set_petsitter, only: [:show]
+    before_action :set_petsitter, only: [:show, :edit, :update]
 
     def index
         @petsitters = Petsitter.all
@@ -17,6 +17,8 @@ class PetsittersController < ApplicationController
 
     def new
         @petsitter = Petsitter.new
+        # Assigning the user_id is just to allow showing the user picture in the "new" html page
+        @petsitter.user_id = current_user.id
     end
 
     def update
@@ -33,7 +35,7 @@ class PetsittersController < ApplicationController
 
     def create
         whitelisted_params = petsitter_params
-        @petsitter = current_user.petsitter.create(whitelisted_params)
+        @petsitter = current_user.create_petsitter(whitelisted_params)
 
         if @petsitter.errors.any?
             render "new"
