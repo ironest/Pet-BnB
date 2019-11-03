@@ -10,6 +10,7 @@
                 </div>
                 <div class="component__info">
                     <p class="tiny-shadow"><%= petsitter.user.first_name + " " + petsitter.user.last_name %></p>
+                    <p class="tiny-shadow">(<%= petsitter.status.capitalize %>)</p>
                 </div>
             <% end %>
         </div>

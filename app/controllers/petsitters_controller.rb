@@ -31,7 +31,6 @@ class PetsittersController < ApplicationController
 
     end
 
-
     def create
         whitelisted_params = petsitter_params
         @petsitter = current_user.petsitter.create(whitelisted_params)

@@ -1,50 +1,56 @@
-<main id="petsitter-show" class="container">
+<main id="petsitter" class="container">
 
     <h2 class="page-name">Petsitter details</h2>
 
-    <h3>
-        <%= @petsitter.user.first_name %>
-    </h3>
+    <div class="form">
+    
+        <div class="picture-container">
 
-    <br />
+            <% if @petsitter.user.picture.attached? %>
+                <%= image_tag @petsitter.user.picture, id:"picture-preview" %>
+            <% else %>
+                <%= image_tag "", id:"picture-preview", style:"display: none" %>
+            <% end %>
 
-    <p>
-        <%= @petsitter.user.last_name %>
-    </p>
+        </div>
 
-    <br />
+        <p>First name: <%= @petsitter.user.first_name %></p>
 
-    <p>
-        <%= @petsitter.price_rate / 100.0 %>
-    </p>
+        <p>Last name: <%= @petsitter.user.last_name %></p>
 
-    <br />
+        <p>Daily Rate: <%= @petsitter.price_rate / 100.0 %></p>
 
-    <p>
-        <%= @petsitter.status %>
-    </p>
+        <p>Status: <%= @petsitter.status %></p>
 
-    <br />
+        <p>Total Bookings: <%= @petsitter.bookings.where(status:"payed").count %></p>
+        
+        <%= link_to "Edit", edit_petsitter_path(@petsitter.id), class: "link-button" %>
 
-    <%= image_tag @petsitter.user.picture if @petsitter.user.picture.attached? %>
+        <%= link_to "Delete", petsitter_path(@petsitter.id), method: :delete, data: { confirm: 'Are you sure?' }, class: "link-button"%>
 
-    <br />
+    </div>
 
-    <%= link_to("Edit petsitter profile", edit_petsitter_path(@petsitter.id)) %>
+    <% if @petsitter.user.pets.count > 0 %>
 
-    <br />
+        <h2 class="page-name">Petsitter's Residential Pets</h2>
+        <div class="form">
+            <% @petsitter.user.pets.each_with_index do |pet, index| %>
 
-    <%= link_to("Delete petsitter profile", petsitter_path(@petsitter.id), method: :delete, data: { confirm: 'Are you sure?' })%>
+                <div class="picture-container">
 
-    <br />
+                    <% if pet.picture.attached? %>
+                        <%= image_tag pet.picture, id:"picture-preview" %>
+                    <% else %>
+                        <%= image_tag "", id:"picture-preview", style:"display: none" %>
+                    <% end %>
 
-    <p>
-        Residential Pets:
-        <% @petsitter.user.pets.each_with_index do |pet, index| %>
+                </div>
 
-            <%= image_tag pet.picture if pet.picture.attached? %>
+            <% end %>
 
-        <% end %>
-    </p>
+        </div>
+
+    <% end %>
+
 
 </main>
