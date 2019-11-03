@@ -13,6 +13,15 @@
     text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
 }
 
+.standard-link {
+    color: $base_green;
+    font-weight: bold;
+
+    &:hover {
+        color: $base_red;
+    }
+}
+
 .floating-bubble {
     display: block;
     padding: 20px;
