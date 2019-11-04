@@ -18,11 +18,11 @@
 
         <p>Last name: <%= @petsitter.user.last_name %></p>
 
-        <p>Daily Rate: <%= @petsitter.price_rate / 100.0 %></p>
-
+        <p>Daily Rate: <%= number_to_currency(@petsitter.price_rate/100.0) %></p>
+        
         <p>Status: <%= @petsitter.status %></p>
 
-        <p>Total Bookings: <%= @petsitter.bookings.where(status:"payed").count %></p>
+        <p>Total Bookings: <%= @petsitter.bookings.where(status:"completed").count %></p>
         
         <%= link_to "Edit", edit_petsitter_path(@petsitter.id), class: "link-button" %>
 
