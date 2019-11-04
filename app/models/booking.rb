@@ -4,5 +4,5 @@ class Booking < ApplicationRecord
   has_many :bookings_pets, dependent: :destroy
   has_many :pets, through: :bookings_pets
   has_one :payment
-  enum status: { pending: 0, accepted: 1, rejected: 2, payed: 3 }
+  enum status: { pending: 0, accepted: 1, rejected: 2, completed: 3}
 end
