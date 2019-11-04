@@ -110,6 +110,8 @@ header {
                 top: 0;
                 bottom: 0;
                 
+                z-index: 90;
+
                 flex-flow: column nowrap;
                 justify-content: flex-start;
                 width: 230px;
@@ -124,7 +126,7 @@ header {
                     align-self: flex-end;
                 }
 
-                & li:first-child {
+                li:first-of-type {
                     margin-top: 50px;
                 }
 
@@ -192,7 +194,7 @@ header {
             background-color: $base_green;
             padding: 10px;
             position: relative;
-            z-index: 90;
+            z-index: 80;
             height: 30px;
             border-radius: 0 0 20px 20px;
             display: flex;
