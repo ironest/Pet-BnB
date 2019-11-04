@@ -1,0 +1,24 @@
+<main id="booking" class="container">
+
+    <h2 class="page-name">Booking details</h2>
+
+    <div class="form">
+    
+        <p>Booking created: <%= @booking.created_at %></p>
+
+        <p><%= @booking.from_date %></p>
+
+        <p><%= @booking.to_date %></p>
+
+        <p><%= number_to_currency(@booking.total_amount/100.0) %></p>
+
+        <p>The status of this booking is: <%= @booking.status %></p>
+
+        <%= link_to "Edit", edit_booking_path(@booking.id), class: "link-button" %>
+
+        <%= link_to "Delete", booking_path(@booking.id), method: :delete, data: { confirm: 'Are you sure?' }, class: "link-button"%>
+
+
+    </div>
+
+</main>

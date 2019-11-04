@@ -124,13 +124,18 @@ for user_id in random_petowner_ids
 
     pet.picture.attach(io: temp_picture, filename: File.basename(temp_picture.path))
 
+    from_date = Faker::Date.backward(days: 30)
+    to_date = Faker::Date.forward(days: 30)
+    petsitter = User.find(random_petsitter_ids.pop).petsitter
+
     # Creating a booking for each PETOWNER
     b = Booking.create(
         user_id: user_id,
-        petsitter_id: User.find(random_petsitter_ids.pop).petsitter.id,
-        from_date: Faker::Date.backward(days: 30),
-        to_date: Faker::Date.forward(days: 30),
-        status: 1 # accepted
+        petsitter_id: petsitter.id,
+        from_date: from_date,
+        to_date: to_date,
+        status: 1, # accepted
+        total_amount: (to_date - from_date).to_i * petsitter.price_rate
     )
 
     pet.bookings = [b]
