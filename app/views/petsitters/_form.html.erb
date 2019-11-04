@@ -20,10 +20,13 @@
 
     <p>Profile Picture can be modified from <%= link_to "Your Detailes", edit_user_registration_path, class: "standard-link" %></p>
 
-    
-
     <%= form.label :price_rate, "Price in cents" %>
     <%= form.number_field :price_rate, min: 0 %>
+
+    <label class="switch">
+
+    <%= form.label :status, "Available for booking" %>
+    <%= form.check_box :status, checked: @petsitter.status == "active" ? true : false %>
 
     <%= form.submit %>
 

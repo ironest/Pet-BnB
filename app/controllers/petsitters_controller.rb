@@ -16,9 +16,16 @@ class PetsittersController < ApplicationController
     end
 
     def new
-        @petsitter = Petsitter.new
-        # Assigning the user_id is just to allow showing the user picture in the "new" html page
-        @petsitter.user_id = current_user.id
+
+        if current_user.petsitter.nil?
+            @petsitter = Petsitter.new
+            # Assigning the user_id is just to allow showing the user picture in the "new" html page
+            @petsitter.user_id = current_user.id
+        else
+            #render "edit"
+            redirect_to petsitter_path(current_user.petsitter)
+        end
+
     end
 
     def update
@@ -53,6 +60,7 @@ class PetsittersController < ApplicationController
     private
 
     def petsitter_params
+        params[:petsitter][:status] = params[:petsitter][:status].to_i
         params.require(:petsitter).permit(:price_rate, :status)
     end
 
