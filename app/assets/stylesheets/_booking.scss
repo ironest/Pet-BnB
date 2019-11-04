@@ -1,10 +1,57 @@
-#booking-index {
+#booking {
 
     &.container {
 
-        * {
-            color: $black;
+        max-width: 960px;
+        display: flex;
+        flex-flow: column;
+        justify-content: center;
+        align-items: center;
+
+        .form {
+
+            border: 2px solid $base_green;
+            width: 100%;
+
+            width: calc(100% - 12px);
+
+            .icon-column {
+                width: 56px;
+            }
+
+            .booking-icon-status {
+                width: 26px;
+                height: 26px;
+            }
+
+            thead {
+                background-color: $base_green;
+                th {
+                    color: $white;
+                    text-shadow: none;
+                }
+            }
+
+            tbody {
+                tr {
+                    background-color: $white;
+                }
+                tr:nth-child(even) {
+                    background-color: rgb(224, 224, 224);
+                }
+                tr:hover {
+                    background-color: $highlight_green;
+                }
+                
+            }
+
+            th,td {
+                text-align: center;
+                padding: 10px 0;
+            }
+
         }
+
     }
 
 }

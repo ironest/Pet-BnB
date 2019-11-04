@@ -1,33 +1,41 @@
-<main id="booking-index" class="container">
+<main id="booking" class="container">
 
     <h2 class="page-name">Your Bookings</h2>
 
-    <h3>
-        Bookings you requested
-    </h3>
+    <table class="form">
+        <thead>
+            <tr>
+                <th class="icon-column">Status</th>
+                <th>Dates</th>
+                <th>Petsitter</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @bookings.each_with_index do |booking, index| %>
 
-    <% @bookings.each_with_index do |booking, index| %>
-        <div class="component">
-            <%= link_to(booking) do %>
-                <h3><%= booking.status %></h3>
-                <p>Requested by: <%= booking.user.first_name %> To: <%= booking.petsitter.user.first_name %></p>
-                <p>Period: <%= booking.from_date %> - <%= booking.from_date %></p>
+                <tr onclick="document.location='<%= booking_path(booking)%>'" style="cursor:pointer">
+                    <td>
+                        <% case booking.status %>
+                            <% when Booking.statuses.keys[0] %>
+                                <%= image_tag "booking/pending.png", class:"booking-icon-status", alt:"Pending request" %>
+                            <% when Booking.statuses.keys[1] %>
+                                <%= image_tag "booking/accepted.png", class:"booking-icon-status", alt:"Request accepted" %>
+                            <% when Booking.statuses.keys[2] %>
+                                <%= image_tag "booking/rejected.png", class:"booking-icon-status", alt:"Request rejected" %>
+                            <% when Booking.statuses.keys[3] %>
+                                <%= image_tag "booking/completed.png", class:"booking-icon-status", alt:"Request completed" %>
+                        <% end %>
+                    </td>
+                    <td>
+                        <p><%= booking.from_date %></p>
+                        <p><%= booking.to_date %></p>
+                        
+                    </td>
+                    <td><%= booking.petsitter.user.first_name %></td>
+                </tr>
+
             <% end %>
-        </div>
-    <% end %>
-
-    <h3>
-        Bookings requested to you
-    </h3>
-
-    <% @bookings.each_with_index do |booking, index| %>
-        <div class="component">
-            <%= link_to(booking) do %>
-                <h3><%= booking.status %></h3>
-                <p>Requested by: <%= booking.user.first_name %> To: <%= booking.petsitter.user.first_name %></p>
-                <p>Period: <%= booking.from_date %> - <%= booking.from_date %></p>
-            <% end %>
-        </div>
-    <% end %>
+        </tbody>
+    </table>
 
 </main>
