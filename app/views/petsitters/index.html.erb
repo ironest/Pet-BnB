@@ -10,7 +10,7 @@
                 </div>
                 <div class="component__info">
                     <p class="tiny-shadow"><%= petsitter.user.first_name + " " + petsitter.user.last_name %></p>
-                    <p class="tiny-shadow">(<%= "#{petsitter.status}".capitalize %>)</p>
+                    <p class="tiny-shadow"><%= number_to_currency(petsitter.price_rate/100.0) %></p>
                 </div>
             <% end %>
         </div>
