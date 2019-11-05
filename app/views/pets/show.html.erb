@@ -20,7 +20,7 @@
 
         <p>Owner: <%= @pet.user.first_name + " " + @pet.user.last_name %></p>
 
-        <p>Total Bookings: <%= @pet.bookings.where(status:"payed").count %></p>
+        <p>Total Bookings: <%= @pet.bookings.where(status:"completed").count %></p>
         
         <%= link_to "Edit", edit_pet_path(@pet.id), class: "link-button" %>
 
