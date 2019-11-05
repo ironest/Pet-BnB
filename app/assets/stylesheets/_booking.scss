@@ -11,12 +11,16 @@
         .form {
 
             border: 2px solid $base_green;
-            width: 100%;
 
             width: calc(100% - 12px);
 
             .icon-column {
                 width: 56px;
+                padding: 0;
+            }
+
+            .half-column {
+                width: 50%;
             }
 
             .booking-icon-status {
@@ -49,6 +53,31 @@
                 text-align: center;
                 padding: 10px 0;
             }
+
+        }
+
+        .link-button {
+            width: 150px;
+            padding: 5px 15px;
+            margin: 20px auto 0;
+            display: block;
+            border: 1px solid $base_green;
+            text-align: center;
+
+            &:hover {
+                background-color: $base_green;
+                color: $white_green;
+            }
+        }
+
+        .booking-notification {
+            width: 80%;
+            padding: 5px 15px;
+            margin: 20px auto 0;
+            display: block;
+            text-align: center;
+            background-color: $base_green;
+            color: $white_green;
 
         }
 

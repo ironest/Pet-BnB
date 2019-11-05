@@ -4,7 +4,7 @@ class BookingsController < ApplicationController
     before_action :set_booking, only: [:show, :edit, :update]
 
     def index
-        @bookings = Booking.all
+        @bookings = Booking.order(:from_date, :created_at)
     end
 
     def show
@@ -45,8 +45,11 @@ class BookingsController < ApplicationController
 
     def destroy
         id = params[:id]
-        Booking.find(id).destroy
-        redirect_to Bookings_path
+        #Booking.find(id).destroy
+        booking = Booking.find(id)
+        booking.status = Booking.statuses.keys[2]
+        booking.save
+        redirect_to bookings_path
     end
 
     private

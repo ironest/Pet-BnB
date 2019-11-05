@@ -2,23 +2,65 @@
 
     <h2 class="page-name">Booking details</h2>
 
-    <div class="form">
-    
-        <p>Booking created: <%= @booking.created_at %></p>
+    <table class="form">
+        <thead>
+            <tr>
+                <th>Info</th>
+                <th>Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="half-column">Booking ID</td>
+                <td class="half-column"><%=@booking.id.to_s.rjust(5, '0')%></td>
+            </tr>
+            <tr>
+                <td class="half-column">From Date</td>
+                <td class="half-column"><%=@booking.from_date%></td>
+            </tr>
+            <tr>
+                <td class="half-column">To Date</td>
+                <td class="half-column"><%=@booking.to_date%></td>
+            </tr>
+            <tr>
+                <td class="half-column">Request Status</td>
+                <td class="half-column"><%=@booking.status%></td>
+            </tr>
+            <tr>
+                <td class="half-column">Icon Status</td>
+                <td class="half-column icon-column">
+                    <% case @booking.status %>
+                        <% when Booking.statuses.keys[0] %>
+                            <%= image_tag "booking/pending.png", class:"booking-icon-status", alt:"Pending request" %>
+                        <% when Booking.statuses.keys[1] %>
+                            <%= image_tag "booking/accepted.png", class:"booking-icon-status", alt:"Request accepted" %>
+                        <% when Booking.statuses.keys[2] %>
+                            <%= image_tag "booking/rejected.png", class:"booking-icon-status", alt:"Request rejected" %>
+                        <% when Booking.statuses.keys[3] %>
+                            <%= image_tag "booking/completed.png", class:"booking-icon-status", alt:"Request completed" %>
+                    <% end %>
+                </td>
+            </tr>
+            <tr>
+                <td class="half-column">Total Amount</td>
+                <td class="half-column"><%=number_to_currency(@booking.total_amount/100.0)%></td>
+            </tr>
+            <tr>
+                <td class="half-column">Pet Owner</td>
+                <td class="half-column"><%=@booking.user.first_name%></td>
+            </tr>
+            <tr>
+                <td class="half-column">Pet Sitter</td>
+                <td class="half-column"><%=@booking.petsitter.user.first_name%></td>
+            </tr>
 
-        <p><%= @booking.from_date %></p>
+        </tbody>
+    </table>
 
-        <p><%= @booking.to_date %></p>
-
-        <p><%= number_to_currency(@booking.total_amount/100.0) %></p>
-
-        <p>The status of this booking is: <%= @booking.status %></p>
-
-        <%= link_to "Edit", edit_booking_path(@booking.id), class: "link-button" %>
-
+    <% if @booking.status == Booking.statuses.keys[3] or @booking.status == Booking.statuses.keys[2] %>
+        <p class="booking-notification">Bookings marked as Completed or Rejected, cannot be modified or deleted.</p>
+    <% else %>
         <%= link_to "Delete", booking_path(@booking.id), method: :delete, data: { confirm: 'Are you sure?' }, class: "link-button"%>
-
-
-    </div>
+    <% end %>
 
 </main>
