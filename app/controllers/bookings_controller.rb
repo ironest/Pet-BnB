@@ -42,8 +42,8 @@ class BookingsController < ApplicationController
 
         if ( @booking.status == Booking.statuses.keys[0] || 
              @booking.status == Booking.statuses.keys[1] ) &&
-           ( @booking.user_id = current_user.id || 
-             @booking.petsitter_id = current_user.petsitter.id
+           ( @booking.user_id == current_user.id || 
+             @booking.petsitter_id == current_user.petsitter.id
            )
            
             @booking.status = Booking.statuses.keys[2]
