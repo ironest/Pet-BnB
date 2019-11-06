@@ -57,10 +57,21 @@
         </tbody>
     </table>
 
-    <% if @booking.status == Booking.statuses.keys[3] or @booking.status == Booking.statuses.keys[2] %>
-        <p class="booking-notification">Bookings marked as Completed or Rejected, cannot be modified or deleted.</p>
-    <% else %>
-        <%= link_to "Delete", booking_path(@booking.id), method: :delete, data: { confirm: 'Are you sure?' }, class: "link-button"%>
+    <% case @booking.status %>
+        <% when Booking.statuses.keys[0] %>
+
+            <% if current_user.petsitter && @booking.petsitter_id == current_user.petsitter.id %>
+                <%= link_to "Accept", accept_booking_path(@booking.id), method: :patch, data: { confirm: 'Are you sure?' }, class: "link-button"%>
+            <% end %>
+            <%= link_to "Reject", reject_booking_path(@booking.id), method: :patch, data: { confirm: 'Are you sure?' }, class: "link-button"%>    
+
+        <% when Booking.statuses.keys[1] %>
+            
+            <% if @booking.user_id == current_user.id %>
+                <%= link_to "Pay", pay_booking_path(@booking.id), method: :patch, data: { confirm: 'Are you sure?' }, class: "link-button"%>
+            <% end %>
+            <%= link_to "Reject", reject_booking_path(@booking.id), method: :patch, data: { confirm: 'Are you sure?' }, class: "link-button"%>    
+    
     <% end %>
 
 </main>

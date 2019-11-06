@@ -17,6 +17,9 @@ Rails.application.routes.draw do
   get "/petsitters/:id/bookings/new", to: "bookings#new", as: "new_booking"
   post "/bookings", to: "bookings#create"
   get "/bookings/:id", to: "bookings#show", as: "booking"
+  patch "/bookings/:id/accept", to: "bookings#accept", as: "accept_booking"
+  patch "/bookings/:id/reject", to: "bookings#reject", as: "reject_booking"
+  patch "/bookings/:id/pay", to: "bookings#pay", as: "pay_booking"
   delete "/bookings/:id", to: "bookings#destroy"
 
   get "/petsitters", to: "petsitters#index", as: "petsitters"

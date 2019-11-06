@@ -7,12 +7,11 @@
             <tr>
                 <th class="icon-column">Status</th>
                 <th class="split-column">Dates</th>
-                <th class="split-column">Petsitter</th>
+                <th>Petsitter</th>
             </tr>
         </thead>
         <tbody>
             <% @bookings.each_with_index do |booking, index| %>
-
                 <% if booking.user_id == current_user.id %>
 
                     <tr onclick="document.location='<%= booking_path(booking)%>'" style="cursor:pointer">
@@ -52,13 +51,13 @@
             <tr>
                 <th class="icon-column">Status</th>
                 <th class="split-column">Dates</th>
-                <th class="split-column">Petowner</th>
+                <th>Petowner</th>
             </tr>
         </thead>
         <tbody>
             <% @bookings.each_with_index do |booking, index| %>
 
-                <% if booking.petsitter_id == current_user.petsitter %>
+                <% if current_user.petsitter && booking.petsitter_id == current_user.petsitter.id %>
 
                     <tr onclick="document.location='<%= booking_path(booking)%>'" style="cursor:pointer">
                         <td class="icon-column">
@@ -78,7 +77,7 @@
                             <p><%= booking.to_date %></p>
                             
                         </td>
-                        <td><%= booking.petsitter.user.first_name %></td>
+                        <td><%= booking.user.first_name %></td>
                     </tr>
 
                 <% end %>

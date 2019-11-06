@@ -1,7 +1,7 @@
 class BookingsController < ApplicationController
 
     before_action :authenticate_user!
-    before_action :set_booking, only: [:show]
+    before_action :set_booking, only: [:show, :accept, :reject, :pay]
 
     def index
         #@bookings = Booking.order(:from_date, :created_at)
@@ -25,15 +25,45 @@ class BookingsController < ApplicationController
 
     end
 
-    def update
+    def accept
 
-        whitelisted_params = Booking_params
+        if @booking.status == Booking.statuses.keys[0] &&
+           @booking.petsitter_id = current_user.petsitter.id
 
-        if @booking.update(whitelisted_params)
-            redirect_to Booking_path(params[:id])
-        else
-            render "edit"
+           @booking.status = Booking.statuses.keys[1]
+           @booking.save
         end
+
+        redirect_to booking_path(@booking.id)
+
+    end
+
+    def reject
+
+        if ( @booking.status == Booking.statuses.keys[0] || 
+             @booking.status == Booking.statuses.keys[1] ) &&
+           ( @booking.user_id = current_user.id || 
+             @booking.petsitter_id = current_user.petsitter.id
+           )
+           
+            @booking.status = Booking.statuses.keys[2]
+            @booking.save
+         end
+
+        redirect_to booking_path(@booking.id)
+
+    end
+
+    def pay
+
+        if @booking.status == Booking.statuses.keys[1] &&
+            @booking.user_id = current_user.id
+ 
+            @booking.status = Booking.statuses.keys[3]
+            @booking.save
+         end
+
+        redirect_to booking_path(@booking.id)
 
     end
 
