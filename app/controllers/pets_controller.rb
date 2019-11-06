@@ -4,7 +4,8 @@ class PetsController < ApplicationController
     before_action :set_pet, only: [:show, :edit, :update]
 
     def index
-        @pets = Pet.all
+        #@pets = Pet.all
+        @pets = current_user.pets
     end
 
     def show

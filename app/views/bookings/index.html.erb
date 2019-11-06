@@ -1,41 +1,95 @@
 <main id="booking" class="container">
 
-    <h2 class="page-name">Your Bookings</h2>
+    <h2 class="page-name">Bookings you requested</h2>
 
     <table class="form">
         <thead>
             <tr>
-                <th>Status</th>
-                <th>Dates</th>
-                <th>Petsitter</th>
+                <th class="icon-column">Status</th>
+                <th class="split-column">Dates</th>
+                <th class="split-column">Petsitter</th>
             </tr>
         </thead>
         <tbody>
             <% @bookings.each_with_index do |booking, index| %>
 
-                <tr onclick="document.location='<%= booking_path(booking)%>'" style="cursor:pointer">
-                    <td class="icon-column">
-                        <% case booking.status %>
-                            <% when Booking.statuses.keys[0] %>
-                                <%= image_tag "booking/pending.png", class:"booking-icon-status", alt:"Pending request" %>
-                            <% when Booking.statuses.keys[1] %>
-                                <%= image_tag "booking/accepted.png", class:"booking-icon-status", alt:"Request accepted" %>
-                            <% when Booking.statuses.keys[2] %>
-                                <%= image_tag "booking/rejected.png", class:"booking-icon-status", alt:"Request rejected" %>
-                            <% when Booking.statuses.keys[3] %>
-                                <%= image_tag "booking/completed.png", class:"booking-icon-status", alt:"Request completed" %>
-                        <% end %>
-                    </td>
-                    <td>
-                        <p><%= booking.from_date %></p>
-                        <p><%= booking.to_date %></p>
-                        
-                    </td>
-                    <td><%= booking.petsitter.user.first_name %></td>
-                </tr>
+                <% if booking.user_id == current_user.id %>
+
+                    <tr onclick="document.location='<%= booking_path(booking)%>'" style="cursor:pointer">
+                        <td class="icon-column">
+                            <% case booking.status %>
+                                <% when Booking.statuses.keys[0] %>
+                                    <%= image_tag "booking/pending.png", class:"booking-icon-status", alt:"Pending request" %>
+                                <% when Booking.statuses.keys[1] %>
+                                    <%= image_tag "booking/accepted.png", class:"booking-icon-status", alt:"Request accepted" %>
+                                <% when Booking.statuses.keys[2] %>
+                                    <%= image_tag "booking/rejected.png", class:"booking-icon-status", alt:"Request rejected" %>
+                                <% when Booking.statuses.keys[3] %>
+                                    <%= image_tag "booking/completed.png", class:"booking-icon-status", alt:"Request completed" %>
+                            <% end %>
+                        </td>
+                        <td>
+                            <p><%= booking.from_date %></p>
+                            <p><%= booking.to_date %></p>
+                            
+                        </td>
+                        <td><%= booking.petsitter.user.first_name %></td>
+                    </tr>
+                <% end %>
+            <% end %>
+        </tbody>
+        <tfoot>
+            <tr>
+                <th colspan="3"></th>
+            </tr>
+        </tfoot>
+    </table>
+
+    <h2 class="page-name">Bookings requested to you</h2>
+
+    <table class="form">
+        <thead>
+            <tr>
+                <th class="icon-column">Status</th>
+                <th class="split-column">Dates</th>
+                <th class="split-column">Petowner</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @bookings.each_with_index do |booking, index| %>
+
+                <% if booking.petsitter_id == current_user.petsitter %>
+
+                    <tr onclick="document.location='<%= booking_path(booking)%>'" style="cursor:pointer">
+                        <td class="icon-column">
+                            <% case booking.status %>
+                                <% when Booking.statuses.keys[0] %>
+                                    <%= image_tag "booking/pending.png", class:"booking-icon-status", alt:"Pending request" %>
+                                <% when Booking.statuses.keys[1] %>
+                                    <%= image_tag "booking/accepted.png", class:"booking-icon-status", alt:"Request accepted" %>
+                                <% when Booking.statuses.keys[2] %>
+                                    <%= image_tag "booking/rejected.png", class:"booking-icon-status", alt:"Request rejected" %>
+                                <% when Booking.statuses.keys[3] %>
+                                    <%= image_tag "booking/completed.png", class:"booking-icon-status", alt:"Request completed" %>
+                            <% end %>
+                        </td>
+                        <td>
+                            <p><%= booking.from_date %></p>
+                            <p><%= booking.to_date %></p>
+                            
+                        </td>
+                        <td><%= booking.petsitter.user.first_name %></td>
+                    </tr>
+
+                <% end %>
 
             <% end %>
         </tbody>
+        <tfoot>
+            <tr>
+                <th colspan="3"></th>
+            </tr>
+        </tfoot>
     </table>
 
 </main>

@@ -4,7 +4,9 @@ class BookingsController < ApplicationController
     before_action :set_booking, only: [:show]
 
     def index
-        @bookings = Booking.order(:from_date, :created_at)
+        #@bookings = Booking.order(:from_date, :created_at)
+        @bookings = Booking.where(user_id: current_user.id).or(Booking.where(petsitter_id: current_user.petsitter))
+
     end
 
     def show

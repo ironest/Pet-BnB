@@ -4,7 +4,8 @@ class PetsittersController < ApplicationController
     before_action :set_petsitter, only: [:show, :edit, :update]
 
     def index
-        @petsitters = Petsitter.all
+        #@petsitters = Petsitter.all
+        @petsitters = Petsitter.where.not(user_id: current_user.id)
     end
 
     def show

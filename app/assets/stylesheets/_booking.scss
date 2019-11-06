@@ -23,6 +23,10 @@
                 width: 50%;
             }
 
+            .split-column {
+                width: 40%
+            }
+
             .booking-icon-status {
                 width: 26px;
                 height: 26px;
@@ -38,10 +42,11 @@
 
             tbody {
                 tr {
-                    background-color: $white;
+
+                    background-color: $white_green;
                 }
                 tr:nth-child(even) {
-                    background-color: rgb(224, 224, 224);
+                    background-color: rgb(225, 225, 225);
                 }
                 tr:hover {
                     background-color: $highlight_green;
@@ -54,6 +59,9 @@
                 padding: 10px 0;
             }
 
+            tfoot tr th {
+                padding: 2px;
+            }
         }
 
         .reserve-booking {
