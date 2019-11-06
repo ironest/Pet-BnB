@@ -1,11 +1,14 @@
 class PetsittersController < ApplicationController
 
-    before_action :authenticate_user!
+    before_action :authenticate_user!, except: [:index]
     before_action :set_petsitter, only: [:show, :edit, :update]
 
     def index
-        #@petsitters = Petsitter.all
-        @petsitters = Petsitter.where.not(user_id: current_user.id)
+        if current_user
+            @petsitters = Petsitter.where.not(user_id: current_user.id)
+        else
+            @petsitters = Petsitter.all
+        end
     end
 
     def show
