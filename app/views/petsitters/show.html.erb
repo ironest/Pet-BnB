@@ -35,7 +35,7 @@
     <% if @petsitter.user.pets.count > 0 %>
 
         <h2 class="page-name">Petsitter's Residential Pets</h2>
-        <div class="form">
+        <div class="pet-container">
             <% @petsitter.user.pets.each_with_index do |pet, index| %>
 
                 <div class="picture-container">

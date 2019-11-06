@@ -2,6 +2,7 @@
 
     &.container {
 
+        .pet-container,
         .form {
 
             width: calc(100% - 70px);
@@ -27,7 +28,7 @@
                 margin-top: 20px;
                 border: 1px solid $base_green;
                 height: 200px;
-                max-width: 200px;
+                width: 200px;
                 overflow: hidden;
                 background-color: $white_green;
 
@@ -76,5 +77,25 @@
 
         }
 
+        .pet-container{
+            display: flex;
+            flex-flow: row wrap;
+
+            .picture-container{
+
+                height: 100px;
+                width: 100px;
+
+                #picture-preview {
+                    object-fit:cover;
+                    height: 100px;
+                    width: 100px;
+                }
+
+            }
+
+        }
+
     }
 }
+
