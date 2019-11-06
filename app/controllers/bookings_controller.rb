@@ -1,7 +1,7 @@
 class BookingsController < ApplicationController
 
     before_action :authenticate_user!
-    before_action :set_booking, only: [:show, :edit, :update]
+    before_action :set_booking, only: [:show]
 
     def index
         @bookings = Booking.order(:from_date, :created_at)
@@ -15,8 +15,12 @@ class BookingsController < ApplicationController
     end
 
     def new
+
         @booking = Booking.new
-        @statuses = Booking.statuses
+        @petsitter = Petsitter.find(params[:id].to_i)
+        @booking.petsitter_id = @petsitter.id
+        @pets = Pet.where(user_id: current_user.id)
+
     end
 
     def update
@@ -32,14 +36,23 @@ class BookingsController < ApplicationController
     end
 
     def create
-        whitelisted_params = Booking_params
-        @booking = current_user.Bookings.create(whitelisted_params)
+
+        whitelisted_params = booking_params
+        whitelisted_params.merge!(user_id: current_user.id)
+
+        petsitter = Petsitter.find(params[:booking][:petsitter_id])
+        total_amount = (params[:booking][:to_date].to_date - params[:booking][:from_date].to_date).to_i * petsitter.price_rate
+       
+        whitelisted_params.merge!(total_amount: total_amount)
+
+        whitelisted_params.merge!(status: Booking.statuses.keys[0])
+        
+        @booking = current_user.bookings.create(whitelisted_params)
 
         if @booking.errors.any?
-            @statuses = Booking.statuses
             render "new"
         else
-            redirect_to Booking_path(@booking)
+            redirect_to booking_path(@booking)
         end
     end
 
@@ -54,9 +67,10 @@ class BookingsController < ApplicationController
 
     private
 
+    private
+
     def booking_params
-        params[:Booking][:Booking_type] = params[:Booking][:Booking_type].to_i
-        params.require(:Booking).permit(:name, :Booking_type, :picture)
+        params.require(:booking).permit(:from_date, :to_date, :petsitter_id, pet_ids: [])
     end
 
     def set_booking

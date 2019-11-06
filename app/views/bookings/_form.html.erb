@@ -1,0 +1,34 @@
+<% if booking.errors.any? %>
+
+    <% for error in booking.errors.full_messages %>
+        <p><%=error%></p>
+    <% end %>
+
+<% end %>
+
+<%= form_with model: booking, local: true, class: "reserve-booking" do |form| %>
+
+    <div class="picture-container">
+
+        <% if petsitter.user.picture.attached? %>
+            <%= image_tag petsitter.user.picture, id:"picture-preview" %>
+        <% end %>
+
+    </div>    
+
+    <%= form.hidden_field :petsitter_id, value: @petsitter.id %>
+
+    <%= form.label :from_date %>
+    <%= form.date_field :from_date %>
+
+    <%= form.label :to_date %>
+    <%= form.date_field :to_date %>
+
+    <%= form.label :"pets_to_include:" %>
+    <div class="pet-list">
+        <%= form.collection_check_boxes :pet_ids, pets, :id, :name %>
+    </div>
+
+    <%= form.submit %>
+
+<% end %>

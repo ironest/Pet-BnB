@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, path: "/"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   get "/", to: "pages#home", as: "root"
@@ -14,12 +14,9 @@ Rails.application.routes.draw do
   delete "/pets/:id", to: "pets#destroy"  
 
   get "/bookings", to: "bookings#index", as: "bookings"
-  get "/bookings/new", to: "bookings#new", as: "new_booking"
+  get "/petsitters/:id/bookings/new", to: "bookings#new", as: "new_booking"
   post "/bookings", to: "bookings#create"
   get "/bookings/:id", to: "bookings#show", as: "booking"
-  get "/bookings/:id/edit", to: "bookings#edit", as: "edit_booking"
-  put "/bookings/:id", to: "bookings#update"
-  patch "/bookings/:id", to: "bookings#update"
   delete "/bookings/:id", to: "bookings#destroy"
 
   get "/petsitters", to: "petsitters#index", as: "petsitters"
