@@ -24,11 +24,17 @@
 
         <p>Total Bookings: <%= @petsitter.bookings.where(status:"completed").count %></p>
         
-        <%= link_to "Request a booking", new_booking_path(@petsitter.id), class: "link-button" %>
+        <% if current_user.id == @petsitter.user_id %> 
 
-        <%= link_to "Edit", edit_petsitter_path(@petsitter.id), class: "link-button" %>
+            <%= link_to "Edit", edit_petsitter_path(@petsitter.id), class: "link-button" %>
 
-        <%= link_to "Delete", petsitter_path(@petsitter.id), method: :delete, data: { confirm: 'Are you sure?' }, class: "link-button"%>
+            <%= link_to "Delete", petsitter_path(@petsitter.id), method: :delete, data: { confirm: 'Are you sure?' }, class: "link-button"%>
+
+         <% else %>
+
+            <%= link_to "Request a booking", new_booking_path(@petsitter.id), class: "link-button" %>
+
+        <% end %>
 
     </div>
 
