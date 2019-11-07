@@ -1,7 +1,7 @@
 class BookingsController < ApplicationController
 
-    skip_before_action :verify_authenticity_token, only: [:webhook]
-    before_action :authenticate_user!
+    protect_from_forgery except: [:webhook]
+    before_action :authenticate_user!, except: [:webhook]
     before_action :set_booking, only: [:show, :accept, :reject, :success]
 
     def index
@@ -35,10 +35,6 @@ class BookingsController < ApplicationController
 
         @session_id = session.id
 
-    end
-
-    def edit
-        @statuses = Booking.statuses
     end
 
     def new
@@ -80,30 +76,50 @@ class BookingsController < ApplicationController
     end
 
     def webhook
-        puts params
+
+        head 200
 
         payment_id = params[:data][:object][:payment_intent]
         payment = Stripe::PaymentIntent.retrieve(payment_id)
 
         booking_id = payment.metadata.booking_id
-        petsitter_id = payment.metadata.booking_id
+        petsitter_id = payment.metadata.petsitter_id
         user_id = payment.metadata.user_id
         total_amount = payment.metadata.total_amount
 
-        status 200
+        booking = Booking.find_by_id(booking_id)
 
-        booking = Booking.find_by_id(booking_id).where(petsitter_id:petsitter_id, )
+        if booking
+            puts "WEBHOOK: A booking record with id=#{booking_id} was found!"
+
+            if booking.petsitter_id.to_s == petsitter_id.to_s &&
+               booking.user_id.to_s == user_id.to_s &&
+               booking.total_amount.to_s == total_amount.to_s
+
+                puts "WEBHOOK: All attributes match!"
+                booking.status = Booking.statuses.keys[3]
+                booking.save
+
+            else
+                puts "WEBHOOK: ERROR, Attributes do not match!"
+
+                p petsitter_id
+                p user_id
+                p total_amount
+
+                p booking.petsitter_id
+                p booking.user_id
+                p booking.total_amount
+
+            end
+        else
+            puts "WEBHOOK: ERROR, No booking record found!"
+
+        end
 
     end
 
     def success
-
-        # if @booking.status == Booking.statuses.keys[1] &&
-        #     @booking.user_id = current_user.id
- 
-        #     @booking.status = Booking.statuses.keys[3]
-        #     @booking.save
-        #  end
 
         redirect_to booking_path(@booking.id)
 
