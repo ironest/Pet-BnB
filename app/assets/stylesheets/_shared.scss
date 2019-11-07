@@ -245,6 +245,24 @@ header {
 
     }
 
+    .link-button,
+    input[type=submit] {
+
+        width: 150px;
+        height: 30px;
+        margin: 20px auto 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid $base_green;
+        text-align: center;
+
+        &:hover {
+            background-color: $base_green;
+            color: $white_green;
+        }
+    }
+
 }
 
 .hero {

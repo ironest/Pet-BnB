@@ -1,3 +1,4 @@
+#devise,
 #pet {
 
     &.container {
@@ -60,18 +61,10 @@
 
             .link-button,
             input[type=submit]{
-                width: auto;
-                width: 150px;
-                padding: 5px 15px;
-                margin: 20px auto 0;
-                display: block;
-                border: 1px solid $base_green;
-                text-align: center;
 
-                &:hover {
-                    background-color: $base_green;
-                    color: $white_green;
-                }
+                width: 150px;
+                margin: 20px auto 0;
+
             }
 
         }
