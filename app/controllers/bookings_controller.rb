@@ -88,15 +88,6 @@ class BookingsController < ApplicationController
         end
     end
 
-    def destroy
-        id = params[:id]
-        #Booking.find(id).destroy
-        booking = Booking.find(id)
-        booking.status = Booking.statuses.keys[2]
-        booking.save
-        redirect_to bookings_path
-    end
-
     private
 
     private
