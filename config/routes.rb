@@ -20,7 +20,6 @@ Rails.application.routes.draw do
   patch "/bookings/:id/accept", to: "bookings#accept", as: "accept_booking"
   patch "/bookings/:id/reject", to: "bookings#reject", as: "reject_booking"
   patch "/bookings/:id/pay", to: "bookings#pay", as: "pay_booking"
-  delete "/bookings/:id", to: "bookings#destroy"
 
   get "/petsitters", to: "petsitters#index", as: "petsitters"
   get "/petsitters/new", to: "petsitters#new", as: "new_petsitter"
