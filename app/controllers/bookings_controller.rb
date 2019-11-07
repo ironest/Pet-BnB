@@ -1,15 +1,40 @@
 class BookingsController < ApplicationController
 
+    skip_before_action :verify_authenticity_token, only: [:webhook]
     before_action :authenticate_user!
-    before_action :set_booking, only: [:show, :accept, :reject, :pay]
+    before_action :set_booking, only: [:show, :accept, :reject, :success]
 
     def index
-        #@bookings = Booking.order(:from_date, :created_at)
         @bookings = Booking.where(user_id: current_user.id).or(Booking.where(petsitter_id: current_user.petsitter))
-
     end
 
     def show
+
+        session = Stripe::Checkout::Session.create(
+            payment_method_types: ['card'],
+            customer_email: current_user.email,
+            line_items: [{
+                name: "Pet-BnB booking",
+                description: "#{@booking.petsitter.user.first_name} #{@booking.petsitter.user.last_name}' services",
+                images: [url_for(@booking.petsitter.user.picture)],
+                amount: @booking.total_amount,
+                currency: 'aud',
+                quantity: 1,
+            }],
+            payment_intent_data: {
+                metadata: {
+                    user_id: current_user.id,
+                    booking_id: @booking.id,
+                    petsitter_id: @booking.petsitter_id,
+                    total_amount: @booking.total_amount
+                }
+            },
+            success_url: "#{root_url}bookings/#{@booking.id}/success",
+            cancel_url: "#{root_url}bookings"
+        )
+
+        @session_id = session.id
+
     end
 
     def edit
@@ -54,14 +79,31 @@ class BookingsController < ApplicationController
 
     end
 
-    def pay
+    def webhook
+        puts params
 
-        if @booking.status == Booking.statuses.keys[1] &&
-            @booking.user_id = current_user.id
+        payment_id = params[:data][:object][:payment_intent]
+        payment = Stripe::PaymentIntent.retrieve(payment_id)
+
+        booking_id = payment.metadata.booking_id
+        petsitter_id = payment.metadata.booking_id
+        user_id = payment.metadata.user_id
+        total_amount = payment.metadata.total_amount
+
+        status 200
+
+        booking = Booking.find_by_id(booking_id).where(petsitter_id:petsitter_id, )
+
+    end
+
+    def success
+
+        # if @booking.status == Booking.statuses.keys[1] &&
+        #     @booking.user_id = current_user.id
  
-            @booking.status = Booking.statuses.keys[3]
-            @booking.save
-         end
+        #     @booking.status = Booking.statuses.keys[3]
+        #     @booking.save
+        #  end
 
         redirect_to booking_path(@booking.id)
 

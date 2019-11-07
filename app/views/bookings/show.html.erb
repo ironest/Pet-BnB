@@ -68,10 +68,26 @@
         <% when Booking.statuses.keys[1] %>
             
             <% if @booking.user_id == current_user.id %>
-                <%= link_to "Pay", pay_booking_path(@booking.id), method: :patch, data: { confirm: 'Are you sure?' }, class: "link-button"%>
+                <%= link_to "Pay", "#", method: :patch, data: { confirm: 'Are you sure?' }, class: "link-button", id: "pay-button"%>
+
             <% end %>
             <%= link_to "Reject", reject_booking_path(@booking.id), method: :patch, data: { confirm: 'Are you sure?' }, class: "link-button"%>    
     
     <% end %>
 
 </main>
+
+<script src="https://js.stripe.com/v3/"></script>
+
+<script>
+
+    document.getElementById("pay-button").addEventListener("click", () => {
+
+        const stripe = Stripe("<%= Rails.application.credentials.dig(:stripe, :public_key) %>");
+        stripe.redirectToCheckout({
+            sessionId: "<%= @session_id %>"
+        })
+
+    })
+
+</script>

@@ -19,7 +19,8 @@ Rails.application.routes.draw do
   get "/bookings/:id", to: "bookings#show", as: "booking"
   patch "/bookings/:id/accept", to: "bookings#accept", as: "accept_booking"
   patch "/bookings/:id/reject", to: "bookings#reject", as: "reject_booking"
-  patch "/bookings/:id/pay", to: "bookings#pay", as: "pay_booking"
+  get "/bookings/:id/success", to: "bookings#success", as: "success_booking"
+  post "/bookings/webhook", to: "bookings#webhook", as: "complete_booking"
 
   get "/petsitters", to: "petsitters#index", as: "petsitters"
   get "/petsitters/new", to: "petsitters#new", as: "new_petsitter"
