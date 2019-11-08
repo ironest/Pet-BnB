@@ -7,23 +7,23 @@
             &__image {
 
                 &.your-pets {
-                    background-image: url("your-pets.jpg")
+                    background-image: url(image-path("your-pets.jpg"))
                 }
 
                 &.pet-sitters {
-                    background-image: url("pet-sitters.jpg")
+                    background-image: url(image-path("pet-sitters.jpg"))
                 }
 
                 &.become-sitter {
-                    background-image: url("become-sitter.jpg")
+                    background-image: url(image-path("become-sitter.jpg"))
                 }
 
                 &.bookings {
-                    background-image: url("bookings.jpg")
+                    background-image: url(image-path("bookings.jpg"))
                 }
 
                 &.your-details {
-                    background-image: url("your-details.jpg")
+                    background-image: url(image-path("your-details.jpg"))
                 }
 
             }
