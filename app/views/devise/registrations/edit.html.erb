@@ -1,48 +1,50 @@
 <main id="devise" class="container">
 
-<h2 class="page-name">Edit <%= resource_name.to_s.humanize %></h2>
+  <h2 class="page-name">Edit <%= resource_name.to_s.humanize %></h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: "form" }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: "form" }) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="picture-container">
+    <div class="picture-container">
 
-      <% if resource.picture.attached? %>
-          <%= image_tag resource.picture, id:"picture-preview" %>
-      <% else %>
-          <%= image_tag "", id:"picture-preview", style:"display: none" %>
-      <% end %>
+        <% if resource.picture.attached? %>
+            <%= image_tag resource.picture, id:"picture-preview" %>
+        <% else %>
+            <%= image_tag "", id:"picture-preview", style:"display: none" %>
+        <% end %>
 
-  </div>
+    </div>
 
-  <%= f.label :Upload_Picture %>
-  <%= f.file_field :picture, accept: "image/png,image/gif,image/jpeg,image/jpg", onchange: "readURL(this.value)"  %>
+    <%= f.label :Upload_Picture %>
+    <%= f.file_field :picture, accept: "image/png,image/gif,image/jpeg,image/jpg", onchange: "readURL(this.value)"  %>
 
-  <%= f.label :email %><br />
-  <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+    <% end %>
+
+    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+    <%= f.password_field :password, autocomplete: "new-password" %>
+    <% if @minimum_password_length %>
+      <br />
+      <em><%= @minimum_password_length %> characters minimum</em>
+    <% end %>
+
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+
+    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+    <%= f.password_field :current_password, autocomplete: "current-password" %>
+
+    <%= f.submit "Update" %>
+
   <% end %>
 
-  <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-  <%= f.password_field :password, autocomplete: "new-password" %>
-  <% if @minimum_password_length %>
-    <br />
-    <em><%= @minimum_password_length %> characters minimum</em>
-  <% end %>
+  <%= link_to "Back", :back, class: "link-button"%>
 
-  <%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-
-  <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-  <%= f.password_field :current_password, autocomplete: "current-password" %>
-
-  <%= f.submit "Update" %>
-
-<% end %>
-
-<%= link_to "Back", :back, class: "link-button"%>
+</main>
 
 <script>
     var readURL = function(event) {
