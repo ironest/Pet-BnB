@@ -146,7 +146,7 @@ header {
 
 .container {
 
-    margin: 20px auto;
+    margin: 20px auto 80px;
 
     max-width: 1280px;
 
@@ -272,7 +272,7 @@ header {
     width: 100%;
     height: 300px;
 
-    background-image: url("hero-background.png");
+    background-image: url(image-path("hero-background.png"));
     background-position: top right;
     background-repeat: no-repeat;
     background-size: cover;
@@ -294,6 +294,48 @@ header {
 
     h2 {
         font-size: 30px;
+    }
+
+}
+
+footer {
+    background-color: $base_green;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    p {
+        text-align: center;
+        color: #C9DBF2;
+        font-size: 15px;
+    }
+
+    #socialMediaList {
+        list-style: none;
+        margin: 15px 0 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+
+        li {
+            margin: 10px;
+
+            .socialMediaIcon {
+                width: 30px;
+                height: 30px;
+                opacity: 0.5;
+                transition: transform .2s; /* Animation */
+            }
+            
+            .socialMediaIcon:hover {
+                opacity: 1;
+                position: relative;
+                transform: scale(1.3);
+            }
+
+        }
+
     }
 
 }
