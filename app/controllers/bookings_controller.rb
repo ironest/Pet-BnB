@@ -79,8 +79,8 @@ class BookingsController < ApplicationController
 
         head 200
 
-        payment_id = params[:data][:object][:payment_intent]
-        payment = Stripe::PaymentIntent.retrieve(payment_id)
+        stripe_id = params[:data][:object][:payment_intent]
+        payment = Stripe::PaymentIntent.retrieve(stripe_id)
 
         booking_id = payment.metadata.booking_id
         petsitter_id = payment.metadata.petsitter_id
@@ -98,6 +98,8 @@ class BookingsController < ApplicationController
 
                 puts "WEBHOOK: All attributes match!"
                 booking.status = Booking.statuses.keys[3]
+                booking.stripe_id = stripe_id
+
                 booking.save
 
             else
