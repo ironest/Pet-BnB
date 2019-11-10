@@ -67,9 +67,10 @@ The target audience for my project can be broken-down into the main categories:
 * Deployment platform
   * Heroku (as web-app hosting platform)
 
-#### Thirs party services
+#### Third party services
 
 * **Faker**
+
 Faker is a Ruby Gem to generate random data. It is composed by many modules, each responsible for different subjects. In my web-app, I relied on Faker during the testing phase, to seed fake data into my PostgreSQL database.
 Modules I took advantage of are:
   * Faker::Name
@@ -84,14 +85,17 @@ Modules I took advantage of are:
   To generate Customers DoB and Booking periods
 
 * **Loremflickr**
+
 LoremFlickr provides placeholder images for every case on almost any subject, in any size. It is also possible to specify one (or more) keywords to get an image displaying the subject requested. I used this service as part of my automated seeding process, by retrieving Pets and User profile pictures. However, this service was not directly employed by my own code, by rather through Faker which exposes a module and a method to call Loremflickr.
 
 * **Down**
+
 Down is a utility tool for streaming, flexible and safe downloading of remote files.
 For my web-app, I used the Down's primary method `Down.download`, which downloads the remote file into a temporary file.
 Down is employed to download and store images (from Loremflickr) in my web-app active storage. In the early stage of the development phase, active storage was configured as local and, eventually, on AWS S3.
 
 * **Devise**
+
 Devise is a flexible authentication solution for Rails based on Warden.
 In my web-app, Devise was used to provide the authentication feature, which translates into giving users the possibility to:
   * Sign up for an account
@@ -102,26 +106,39 @@ In my web-app, Devise was used to provide the authentication feature, which tran
   One of the greatest benefit provided by Devise (other than the obvious authentication feature) is the availability of a special object `current_user` which returns the exact active record of the current logged-in user.
 
 * **Stripe**
+
 Stripe is a service that allows individuals and businesses to make and receive payments over the Internet. In my web-app, this third party service was employed to provide pet-owner a way to make payments to pat-sitters. Among all the functionalities that Stripe offers, I used the "One-time payments with Checkout" option, which translates into redirecting a user to a payment form where customers can complete their purchases (by entering their credit card details). Once a customer has completed a purchase, they are redirected back to my web-app. To rely on this third party service, I used both the online Stripe web-form AND the Stripe Gem, which is required to prepare the `Stripe::Checkout::Session` and to retrieve the `Stripe::PaymentIntent` from the webhook.
 
 * **Amazon S3**
+
 Amazon S3 is a service offered by AWS that provides object storage through a web service interface.
 
 * **Heroku (PaaS and DBaaS)**
+
 Heroku is a cloud platform as a service (PaaS) supporting several programming languages. I relied on Heroku for the deployment of my Ruby on Rails application as well as for the creation/maintenance of my PostgreSql Cloud database (DBaaS).
 
 #### User stories
 
 **1.** As a user, I want to be able to register/sign up, so I can create my own profile
+
 **2.** As a user, I want to be able to change my password, so I can improve security of my account
+
 **3.** As a user (pet-owner), I want to be able to create a profile for each of my pet, so I can specify which service are required for each of my pet
+
 **4.** As a user (pet-owner), I want to be able to edit/modify info about my pet, so I can keep up-to-date information that might change over time
+
 **5.** As a user (pet-owner), I want to be able to browse among pet-sitter profiles, so I can choose and compare who is the most suitable for my needs
+
 **6.** As a user (pet-owner), I want to be able to place an expression of interest for a pet-sitter, so I can notify my intention to book his/her services
+
 **7.** As a user (pet-owner), I want to be able to specify for which period I need a pet-sitter for, so I can make sure there are no ambiguities when placing a reservation
+
 **8.** As a user (pet-sitter), I want to be able to create an extended profile costs and services I can offer, so other users can recognise me as a pet-sitter
+
 **9.** As a user (pet-sitter), I want to be able to specify my daily rate fees, so pet-sitter know in advance if they can afford my services
+
 **10.** As a user (pet-sitter), I want to be able to see if a pet-sitter sent me an expression of interest, so I can accept or reject it
+
 **11.** As a user (pet-owner), I want to be able to see if a pet-sitter accepted of rejected my expression of interest, so I can proceed with a payment and lock in the booking
 
 #### Wireframes
@@ -263,6 +280,16 @@ end
 ```
 **Active Storage:**
 <img src="./docs/rel_active_storage.png" />
+
+```ruby
+class User < ApplicationRecord
+  has_one_attached :picture
+end
+
+class Pet < ApplicationRecord
+  has_one_attached :picture
+end
+```
 
 #### High-level components
 
