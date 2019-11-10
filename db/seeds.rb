@@ -142,19 +142,10 @@ for user_id in random_petowner_ids
 
 end
 
-# 3 Random BOOKINGS are marked as payed and inserted into the TRANSACTIONS table
+# 3 Random BOOKINGS are marked as payed
 for booking in Booking.all.sample(3)
 
     booking.status = 3 # payed
     booking.save
- 
-    amount = (booking.petsitter.price_rate * (booking.to_date - booking.from_date).to_i)
-
-    p = Payment.create(
-        booking_id: booking.id,
-        amount: amount
-    )
-
-    puts "Payment inserted: $#{amount}"
 
 end
