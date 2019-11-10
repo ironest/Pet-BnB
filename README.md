@@ -66,12 +66,48 @@ The target audience for my project can be broken-down into the main categories:
   * Postgresql (version 11.5)
 * Deployment platform
   * Heroku (as web-app hosting platform)
-* Third party Services
-  * Stripe (version 5.8)
-  * Amazon S3 (as media-file storage)
-* Third party Gems
-  * Down (version 5.0)
-  * Devise (version 4.7)
+
+**Thirs party services**
+
+* **Faker**
+Faker is a Ruby Gem to generate random data. It is composed by many modules, each responsible for different subjects. In my web-app, I relied on Faker during the testing phase, to seed fake data into my PostgreSQL database.
+Modules I took advantage of are:
+  * Faker::Name
+  To generate customer firstname/lastname
+  * Faker::Internet
+  To generate customer contact detail
+  * Faker::LoremFlickr
+  To generate customer and pet profile pictures
+  * Faker::Creature
+  To generate pet information detail
+  * Faker::Date
+  To generate Customers DoB and Booking periods
+
+* **Loremflickr**
+LoremFlickr provides placeholder images for every case on almost any subject, in any size. It is also possible to specify one (or more) keywords to get an image displaying the subject requested. I used this service as part of my automated seeding process, by retrieving Pets and User profile pictures. However, this service was not directly employed by my own code, by rather through Faker which exposes a module and a method to call Loremflickr.
+
+* **Down**
+Down is a utility tool for streaming, flexible and safe downloading of remote files.
+For my web-app, I used the Down's primary method `Down.download`, which downloads the remote file into a temporary file.
+Down is employed to download and store images (from Loremflickr) in my web-app active storage. In the early stage of the development phase, active storage was configured as local and, eventually, on AWS S3.
+
+* **Devise**
+Devise is a flexible authentication solution for Rails based on Warden.
+In my web-app, Devise was used to provide the authentication feature, which translates into giving users the possibility to:
+ * Sign up for an account
+ * Log in into their account
+ * Change their password
+ * Retrieve a password (if forgotten)
+One of the greatest benefit provided by Devise (other than the obvious authentication feature) is the availability of a special object `current_user` which returns the exact active record of the current logged-in user.
+
+* **Stripe**
+Stripe is a service that allows individuals and businesses to make and receive payments over the Internet. In my web-app, this third party service was employed to provide pet-owner a way to make payments to pat-sitters. Among all the functionalities that Stripe offers, I used the "One-time payments with Checkout" option, which translates into redirecting a user to a payment form where customers can complete their purchases (by entering their credit card details). Once a customer has completed a purchase, they are redirected back to my web-app. To rely on this third party service, I used both the online Stripe web-form AND the Stripe Gem, which is required to prepare the `Stripe::Checkout::Session` and to retrieve the `Stripe::PaymentIntent` from the webhook.
+
+* Amazon S3
+Amazon S3 is a service offered by AWS that provides object storage through a web service interface.
+
+* Heroku (PaaS and DBaaS)
+Heroku is a cloud platform as a service (PaaS) supporting several programming languages. I relied on Heroku for the deployment of my Ruby on Rails application as well as for the creation/maintenance of my PostgreSql Cloud database (DBaaS).
 
 **User stories**
 
@@ -93,13 +129,43 @@ The target audience for my project can be broken-down into the main categories:
 
 ![ERD](/docs/ERD.png)
 
+**Database Schema**
+
+![ERD](/docs/schema.png)
+
 **High-level components**
 
-My project was build in Ruby on Rails, following an architectural pattern where the entire app is broken down into THREE high-level components:
+My Web App is build in Ruby on Rails, following the architectural pattern known as MVC, where the entire app is broken down into THREE high-level components:
 * Models
 * Views
 * Controllers
-Each of these components are built to handle specific development aspects of an application. MVC is one of the most frequently used industry-standard web development framework to create scalable and extensible projects.
+
+Each of these components are built to handle specific development aspects of the application. MVC is one of the most frequently used industry-standard web development framework to create scalable and extensible projects.
+The Model component represents shape of the data and business logic. It maintains the data of the application. Model objects retrieve and store model state in a database.
+For maintainability and ease of access, the Model component is further browken down into several business objects:
+* Users
+* Services
+* Petsitters
+* Petsitters_services
+* Pets
+* Bookings
+* Bookings_pets
+
+Each of them store, retrieve and provide data for the object they represent.
+
+The View component corresponds to the user interface. Views display data using model to the user and also enables them to modify the data.
+Similarly to the Model, the View component is also broken down into sub-objects:
+* Bookings
+* Pets
+* Petsitters
+* Pages
+
+Lastly, there's the Controller component; it handles the user request. Typically, users interact with View, which in-turn raises appropriate URL request, this request will be handled by a controller. The controller renders the appropriate view with the model data as a response.
+Sub-objects of the Controllers are:
+* Bookings
+* Pets
+* Petsitters
+* Pages
 
 
 [R16] Detail any third party services that your app will use
