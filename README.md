@@ -3,6 +3,7 @@
 ## Code/Technology Requirements
 
 **Problem Definition**
+
 Going on holidays or arranging business travels is extremely difficult when you have pets.
 Ideally, pet-owners would like to bring their furry friends with them, but pet-friendly facilities are still not too common and those who do allow pets, frequently offer ridicolously over-charged prices. The same scenarios applies to transportation; very few airline companies accept pets and, those who do, provide such service only as a luxury/premium option or by boarding animal in the cargo hold of aircrafts. On top of this, some limitations still applies to specific race/breeds (e.g. short-nosed canine breeds are normally not allowed).
 
@@ -11,15 +12,19 @@ As sad as it might sound, the second most logical option would be to depart with
 The easist and cheapest option is to reach out to private pet-sitters, who do what they do for passion, sometimes as a hobby or a as a second job, simply because they cannot have (or cannot commit to have) a pet their self. But how would you look for a pet sitter? Probably among your close circle of friends and family. Or also by asking them if the happen to know anyone who might be keen. Which is a very limited pool of people and, as a consequence, it's unlikely to have a chance to decide between more than one pet-sitter.
 
 **Solution**
+
 Here is where my project comes into play; I am creating an online web portal where pet-sitters can advertise theirself, their availability and which services they are keep to do. Pet-owners can browse those pet-sitter profiles, place a booking and eventually paying for those services.
 
 **Live Web App**
+
 [pet-bnb-demo.herokuapp.com](https://pet-bnb-demo.herokuapp.com)
 
 **Repository:**
+
 [github.com/ironest/Pet-BnB](https://github.com/ironest/Pet-BnB)
 
 **Functionality / features**
+
 My marketplace project allows users to:
 * Register a new account
 * Create their profile (firstname, lastname, profile picture)
@@ -31,10 +36,11 @@ My marketplace project allows users to:
 * Upgrade their profile to a Pet-sitter profile
 
 **Sitemap**
+
 ![Sitemap](./docs/site_map.png "Diagram showing the Site Map")
 
-
 **Screenshots**
+
 <img src="./docs/screen_shot_1.png" alt="Login Page" width="200" />
 <img src="./docs/screen_shot_2.png" alt="Home Page" width="200" />
 <img src="./docs/screen_shot_3.png" alt="List Pets Page" width="200" />
@@ -44,6 +50,7 @@ My marketplace project allows users to:
 <img src="./docs/screen_shot_7.png" alt="List Bookings Page" width="200" />
 
 **Target audience**
+
 The target audience for my project can be broken-down into the main categories:
 * People who have pets and are looking to join a centralized place where to find petsitters.
 * People who are willing to offer services such as:
@@ -53,7 +60,8 @@ The target audience for my project can be broken-down into the main categories:
   * Pet Grooming
   * Pet Training
 
-**Tech stack** (e.g. html, css, deployment platform, etc)
+**Tech stack**
+
 * Frontend
   * HTML
   * CSS
@@ -88,9 +96,11 @@ The target audience for my project can be broken-down into the main categories:
 **Wireframes**
 
 **Entity Relationship Diagram (ERD)**
+
 ![ERD](/docs/ERD.png)
 
 **High-level components**
+
 My project was build in Ruby on Rails, following an architectural pattern where the entire app is broken down into THREE high-level components:
 * Models
 * Views
