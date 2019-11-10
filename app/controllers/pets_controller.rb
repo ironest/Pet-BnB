@@ -4,7 +4,7 @@ class PetsController < ApplicationController
     before_action :set_pet, only: [:show, :edit, :update]
 
     def index
-        #@pets = Pet.all
+        # Retrieving only those pets which belong to the logged in user 
         @pets = current_user.pets
     end
 

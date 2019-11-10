@@ -5,6 +5,8 @@ class BookingsController < ApplicationController
     before_action :set_booking, only: [:show, :accept, :reject, :success]
 
     def index
+        # Retrieving from the Database all the bookings involving to the logged-in user.
+        # The logged in user can either be the pet-owner (first where condition) or the pet-sitter (second where condition)
         @bookings = Booking.where(user_id: current_user.id).or(Booking.where(petsitter_id: current_user.petsitter))
     end
 
@@ -39,19 +41,27 @@ class BookingsController < ApplicationController
 
     def new
 
+        # Assigning @booking the "shape" of the Booking active record. No real data is retrieved 
         @booking = Booking.new
+        # Assigning @petsitter with the specific Petsitter record ID 
         @petsitter = Petsitter.find(params[:id].to_i)
+        # Manually populating foreign keys
         @booking.petsitter_id = @petsitter.id
+        # Retrieving an array of Pets Active Records
         @pets = Pet.where(user_id: current_user.id)
 
     end
 
     def accept
 
+        # Validating input requests; an accepted booking can only be processed if the status of the booking was pending
         if @booking.status == Booking.statuses.keys[0] &&
            @booking.petsitter_id = current_user.petsitter.id
 
+           # Processing the booking with the next status code
            @booking.status = Booking.statuses.keys[1]
+
+           # Applying/Updating the new status code to the database
            @booking.save
         end
 
@@ -61,13 +71,17 @@ class BookingsController < ApplicationController
 
     def reject
 
+        # Validating input requests; a rejection on a booking can only be processed if the status of the booking was either pending or waiting for payment
         if ( @booking.status == Booking.statuses.keys[0] || 
              @booking.status == Booking.statuses.keys[1] ) &&
            ( @booking.user_id == current_user.id || 
              @booking.petsitter_id == current_user.petsitter.id
            )
            
+            # Processing the booking with the next status code
             @booking.status = Booking.statuses.keys[2]
+
+            # Applying/Updating the new status code to the database
             @booking.save
          end
 
@@ -87,8 +101,10 @@ class BookingsController < ApplicationController
         user_id = payment.metadata.user_id
         total_amount = payment.metadata.total_amount
 
+        # Retrieving from the database the exact record corresponding to the booking received by Stripe
         booking = Booking.find_by_id(booking_id)
 
+        # Checking if an active record was found
         if booking
             puts "WEBHOOK: A booking record with id=#{booking_id} was found!"
 
@@ -97,9 +113,12 @@ class BookingsController < ApplicationController
                booking.total_amount.to_s == total_amount.to_s
 
                 puts "WEBHOOK: All attributes match!"
+
+                # Marking the active record as Completed
                 booking.status = Booking.statuses.keys[3]
                 booking.stripe_id = stripe_id
 
+                # Updating the database
                 booking.save
 
             else
@@ -132,13 +151,18 @@ class BookingsController < ApplicationController
         whitelisted_params = booking_params
         whitelisted_params.merge!(user_id: current_user.id)
 
+        # Retrieving the Petsitter record involved with the request (received by the View)
         petsitter = Petsitter.find(params[:booking][:petsitter_id])
         total_amount = (params[:booking][:to_date].to_date - params[:booking][:from_date].to_date).to_i * petsitter.price_rate
        
+        # Adding extra field to the whitelisted fields
         whitelisted_params.merge!(total_amount: total_amount)
 
+        # Adding extra field to the whitelisted fields
         whitelisted_params.merge!(status: Booking.statuses.keys[0])
         
+        # Saving/applying the new record on the Bookings table
+        # By using "current_user" as first element, I get for free all the FK required
         @booking = current_user.bookings.create(whitelisted_params)
 
         if @booking.errors.any?
@@ -157,6 +181,7 @@ class BookingsController < ApplicationController
     end
 
     def set_booking
+        # Retrieving from the Database the required Booking ID (passed by the View)
         @booking = Booking.find(params[:id])
     end
 
