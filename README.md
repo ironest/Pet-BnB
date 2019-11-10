@@ -3,26 +3,23 @@
 ## Code/Technology Requirements
 
 **Problem Definition**
-
 Going on holidays or arranging business travels is extremely difficult when you have pets.
 Ideally, pet-owners would like to bring their furry friends with them, but pet-friendly facilities are still not too common and those who do allow pets, frequently offer ridicolously over-charged prices. The same scenarios applies to transportation; very few airline companies accept pets and, those who do, provide such service only as a luxury/premium option or by boarding animal in the cargo hold of aircrafts. On top of this, some limitations still applies to specific race/breeds (e.g. short-nosed canine breeds are normally not allowed).
 
 As sad as it might sound, the second most logical option would be to depart without your companion and to rely on Pet Accomodations/Boarding facilities. Generally speaking, those structures claim to have highly qualified staff to look after/entertain your pet and often 24/7 on-site vets. In the best case scenario, the offered services are as good as described but they cost a fortune. In the worse case scenario, the "qualitied staff" who are supposed to keep company to your animal do their job without passion and your pet might end up being kept in small cages for the whole period.
 
-The easist and cheapest option is to reach out to private pet-sitters, who do what they do for passion, sometimes as a hobby or a as a second job, simply because they cannot have (or cannot commit to have) a pet their self.
-
-But how would you look for a pet sitter? Probably among your close circle of friends and family. Or also by asking them if the happen to know anyone who might be keen. Which is a very limited pool of people.
+The easist and cheapest option is to reach out to private pet-sitters, who do what they do for passion, sometimes as a hobby or a as a second job, simply because they cannot have (or cannot commit to have) a pet their self. But how would you look for a pet sitter? Probably among your close circle of friends and family. Or also by asking them if the happen to know anyone who might be keen. Which is a very limited pool of people and, as a consequence, it's unlikely to have a chance to decide between more than one pet-sitter.
 
 **Solution**
-
 Here is where my project comes into play; I am creating an online web portal where pet-sitters can advertise theirself, their availability and which services they are keep to do. Pet-owners can browse those pet-sitter profiles, place a booking and eventually paying for those services.
 
-**Live:** [pet-bnb-demo.herokuapp.com](https://pet-bnb-demo.herokuapp.com)
+**Live Web App**
+[pet-bnb-demo.herokuapp.com](https://pet-bnb-demo.herokuapp.com)
 
-**Repo:** [github.com/ironest/Pet-BnB](https://github.com/ironest/Pet-BnB)
+**Repository:**
+[github.com/ironest/Pet-BnB](https://github.com/ironest/Pet-BnB)
 
 **Functionality / features**
-
 My marketplace project allows users to:
 * Register a new account
 * Create their profile (firstname, lastname, profile picture)
@@ -38,7 +35,6 @@ My marketplace project allows users to:
 
 
 **Screenshots**
-
 <img src="./docs/screen_shot_1.png" alt="Login Page" width="200" />
 <img src="./docs/screen_shot_2.png" alt="Home Page" width="200" />
 <img src="./docs/screen_shot_3.png" alt="List Pets Page" width="200" />
@@ -77,7 +73,20 @@ The target audience for my project can be broken-down into the main categories:
 
 **User stories**
 
+1. As a user, I want to be able to register/sign up, so I can create my own profile
+2. As a user, I want to be able to change my password, so I can improve security of my account
+3. As a user (pet-owner), I want to be able to create a profile for each of my pet, so I can specify which service are required for each of my pet
+4. As a user (pet-owner), I want to be able to edit/modify info about my pet, so I can keep up-to-date information that might change over time
+5. As a user (pet-owner), I want to be able to browse among pet-sitter profiles, so I can choose and compare who is the most suitable for my needs
+6. As a user (pet-owner), I want to be able to place an expression of interest for a pet-sitter, so I can notify my intention to book his/her services
+7. As a user (pet-owner), I want to be able to specify for which period I need a pet-sitter for, so I can make sure there are no ambiguities when placing a reservation
+8. As a user (pet-sitter), I want to be able to create an extended profile costs and services I can offer, so other users can recognise me as a pet-sitter
+9. As a user (pet-sitter), I want to be able to specify my daily rate fees, so pet-sitter know in advance if they can afford my services
+10. As a user (pet-sitter), I want to be able to see if a pet-sitter sent me an expression of interest, so I can accept or reject it
+11. As a user (pet-owner), I want to be able to see if a pet-sitter accepted of rejected my expression of interest, so I can proceed with a payment and lock in the booking
+
 **Wireframes**
+
 **Entity Relationship Diagram (ERD)**
 ![ERD](/docs/ERD.png)
 
