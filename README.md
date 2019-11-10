@@ -41,13 +41,7 @@ My marketplace project allows users to:
 
 **Screenshots**
 
-<img src="./docs/screen_shot_1.png" alt="Login Page" width="200" />
-<img src="./docs/screen_shot_2.png" alt="Home Page" width="200" />
-<img src="./docs/screen_shot_3.png" alt="List Pets Page" width="200" />
-<img src="./docs/screen_shot_4.png" alt="Show Pet Page" width="200" />
-<img src="./docs/screen_shot_5.png" alt="List Petsitters Page" width="200" />
-<img src="./docs/screen_shot_6.png" alt="Show Petsitter Page" width="200" />
-<img src="./docs/screen_shot_7.png" alt="List Bookings Page" width="200" />
+<img src="./docs/screen_shot_1.png" alt="Login Page" width="200" /> <img src="./docs/screen_shot_2.png" alt="Home Page" width="200" /> <img src="./docs/screen_shot_3.png" alt="List Pets Page" width="200" /> <img src="./docs/screen_shot_4.png" alt="Show Pet Page" width="200" /> <img src="./docs/screen_shot_5.png" alt="List Petsitters Page" width="200" /> <img src="./docs/screen_shot_6.png" alt="Show Petsitter Page" width="200" /> <img src="./docs/screen_shot_7.png" alt="List Bookings Page" width="200" />
 
 **Target audience**
 
