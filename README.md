@@ -13,7 +13,7 @@ The easist and cheapest option is to reach out to private pet-sitters, who do wh
 
 #### Solution
 
-Here is where my project comes into play; I am creating an online web portal where pet-sitters can advertise theirself, their availability and which services they are keep to do. Pet-owners can browse those pet-sitter profiles, place a booking and eventually paying for those services.
+Here is where my project comes into play; I am creating an online web portal where pet-sitters can advertise their self, their availability and which services they are keep to do. Pet-owners can browse those pet-sitter profiles, place a booking and eventually paying for those services.
 
 #### Live Web App
 
