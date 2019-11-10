@@ -168,54 +168,90 @@ Sub-objects of the Controllers are:
 * Pages
 
 
-[R16] Detail any third party services that your app will use
-[R17] Describe your projects models in terms of the relationships (active record associations) they have with each other
-[R18] Discuss the database relations to be implemented in your application
-[R19] Provide your database schema design
-[R20] Describe the way tasks are allocated and tracked in your project
+**Trello board with Tasks allocation**
+
+<img src="./docs/trello_00.png" alt="Login Page" width="400" />
 
 * **Day 1 (Friday 25-Oct-2019)**
   * Project idea approved
   * Wireframes sketched out
   * ERD diagram designed
 
+<img src="./docs/trello_01.png" alt="Login Page" width="400" />
+
 * **Day 2 (Monday 28-Oct-2019)** 
-  * Created Models
-  * Create Tables
+  * Created Models (excepting Payments)
+  * Create Tables (excepting Payments)
   * Amended DB with Migrations
   * Applied Model reletionships
+
+<img src="./docs/trello_02.png" alt="Login Page" width="400" />
 
 * **Day 3 (Tuesday 29-Oct-2019)** 
   * Installed Devise
   * Research and Experiment with Devise
   * Customization of User Model
 
+<img src="./docs/trello_03.png" alt="Login Page" width="400" />
+
 * **Day 4 (Wednesday 30-Oct-2019)** 
   * Installed Active Storage (local)
-  * Configured associations between Models and Active Storage
+  * Configured associations between Models and Active Storage (Local Storage)
+
+<img src="./docs/trello_04.png" alt="Login Page" width="400" />
 
 * **Day 5 (Thursday 31-Oct-2019)** 
   * Created Page Controller
   * Created Page (and shared) HTML & CSS
+
+<img src="./docs/trello_05.png" alt="Login Page" width="400" />
 
 * **Day 6 (Friday 01-Nov-2019)** 
   * Entire day spent on Mobile Responsive Design 
   * Navbar design
   * Hamburger menu & Sidebar
 
+<img src="./docs/trello_06.png" alt="Login Page" width="400" />
+
 * **Day 7 (Saturday 02-Nov-2019)** 
   * Created Pet Controller
   * Created Pet HTML & CSS
   * Researched some JS for loading images
 
+<img src="./docs/trello_07.png" alt="Login Page" width="400" />
+
 * **Day 8 (Sunday 03-Nov-2019)** 
   * Created Petsitter Controller
   * Created Petsitter HTML & CSS
+
+<img src="./docs/trello_08.png" alt="Login Page" width="400" />
 
 * **Day 9 (Monday 04-Nov-2019)** 
   * Modified Booking table (through migration)
   * Created Booking Controller
   * Created Booking HTML & CSS
+
+<img src="./docs/trello_09.png" alt="Login Page" width="400" />
+
+* **Day 10/11/12 (Tuesday/WednesdayThursday 05/06/07 Nov-2019)** 
+  * Finalized all front-end matters
+  * Responsiveness through Flexbox
+  * Media queries (for max-width on breackpoints)
+  * Footer with links and social media
+
+<img src="./docs/trello_10.png" alt="Login Page" width="400" />
+
+* **Day 13/14 (Friday/Saturday 08/09 Nov-2019)** 
+  * Authorization (to protect who can access what)
+  * Payment through Stripe
+
+<img src="./docs/trello_11.png" alt="Login Page" width="400" />
+
+* **Day 15 (Sunday 10 Nov-2019)** 
+  * Readme Document
+  * Added comments to code
+
+<img src="./docs/trello_12.png" alt="Login Page" width="400" />
 
 ## Presentation Requirements
 
