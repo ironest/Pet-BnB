@@ -13,11 +13,14 @@ class PetsController < ApplicationController
     end
 
     def edit
+        # Retrieving all the possible ENUMS for PET-TYPES
         @pet_types = Pet.pet_types
     end
 
     def new
+        # Assigning @pet the "shape" of a pet active record (no values)
         @pet = Pet.new
+        # Retrieving all the possible ENUMS for PET-TYPES
         @pet_types = Pet.pet_types
     end
 
@@ -35,6 +38,8 @@ class PetsController < ApplicationController
 
     def create
         whitelisted_params = pet_params
+
+        # Saving into the database all the whitelisted values received by the View
         @pet = current_user.pets.create(whitelisted_params)
 
         if @pet.errors.any?
@@ -46,7 +51,10 @@ class PetsController < ApplicationController
     end
 
     def destroy
+        # Retrieving id from the view
         id = params[:id]
+
+        # Deleting the specified PET record ID from the database
         Pet.find(id).destroy
         redirect_to pets_path
     end
