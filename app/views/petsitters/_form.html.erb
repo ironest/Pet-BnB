@@ -23,11 +23,11 @@
     <%= form.label :price_rate, "Price in cents" %>
     <%= form.number_field :price_rate, min: 0, required:true %>
 
-    <label class="switch">
+    <div class="checkbox-list">
+        <%= form.label :status, "Available for booking" %>
+        <%= form.check_box :status, checked: @petsitter.status == "active" ? true : false %>
+    </div>
 
-    <%= form.label :status, "Available for booking" %>
-    <%= form.check_box :status, checked: @petsitter.status == "active" ? true : false %>
-
-    <%= form.submit %>
+    <%= form.submit class: "link-button" %>
 
 <% end %>

@@ -124,31 +124,41 @@
                 overflow: hidden;
             }
 
-            .pet-list {
+            .link-button,
+            input[type=submit]{
+
+                width: 150px;
+                margin: 20px auto 0;
+
+            }
+
+            .checkbox-list {
 
                 display: flex;
                 justify-content: flex-start;
                 align-content: center;
                 flex-flow: row wrap;
                 width: 200px;
+                margin-bottom: 20px;
+                margin-left: 20px;
 
-                // label,
-                // input[type=checkbox] {
-                //     width: auto;
-                //     margin: 0;
-                //     padding: 0;
-                //     font-size: 16px;
-                //     line-height: 16px;
-                //     height: auto;
-                //     display: inline-block;
-                //     width: 30px;
-                //     margin: 10px 0 5px;
-                // }
-                // label {
-                //     flex: 1 0;
-                //     flex-basis: auto;
-                //     width: 170px;
-                // }
+                label,
+                input[type=checkbox] {
+                    width: auto;
+                    margin: 0;
+                    padding: 0;
+                    font-size: 16px;
+                    line-height: 16px;
+                    height: auto;
+                    display: inline-block;
+                    width: 30px;
+                    margin: 10px 0 5px;
+                }
+                label {
+                    flex: 1 0;
+                    flex-basis: auto;
+                    width: 170px;
+                }
 
             }
 

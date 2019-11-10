@@ -25,10 +25,10 @@
     <%= form.date_field :to_date %>
 
     <%= form.label :"pets_to_include:" %>
-    <div class="pet-list">
+    <div class="checkbox-list">
         <%= form.collection_check_boxes :pet_ids, pets, :id, :name %>
     </div>
 
-    <%= form.submit %>
+    <%= form.submit class: "link-button" %>
 
 <% end %>
