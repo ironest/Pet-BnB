@@ -65,7 +65,7 @@ for id in random_petsitter_ids
     petsitter = Petsitter.create(
         user_id: id,
         price_rate: rand(20..50) * 100,
-        status: 0 # Active
+        status: 1 # Active
     )
 
     puts "Created PETSITTER #{petsitter.user.first_name}"
